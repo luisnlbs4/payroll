@@ -13,6 +13,8 @@ public class Employee {
     private int employeeId;
     private String name;
     private String address;
+    private UnionAffiliation unionAffiliation = UnionAffiliation.NO_AFFILIATION;
+
 
     public Employee(int employeeId, String name, String address) {
         this.employeeId = employeeId;
@@ -77,13 +79,11 @@ public class Employee {
     }
 
 	public void setUnionAffiliation(UnionAffiliation unionAffiliation) {
-		// TODO Auto-generated method stub
-		
+        this.unionAffiliation = unionAffiliation;		
 	}
 
 	public UnionAffiliation getUnionAffiliation() {
-		// TODO Auto-generated method stub
-		return null;
+		return unionAffiliation;
 	}
 
 }

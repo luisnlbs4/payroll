@@ -2,26 +2,29 @@ package payrollcasestudy.entities.affiliations;
 
 import java.util.Calendar;
 
-import org.hamcrest.Matcher;
 
 import payrollcasestudy.entities.ServiceCharge;
 
 public class UnionAffiliation {
 
-	public static final UnionAffiliation NO_AFFILIATION = null;
+	public static final UnionAffiliation NO_AFFILIATION = new UnionAffiliation(0,0);
+	private ServiceCharge servicecharge = new ServiceCharge(null, 0.0);
+	private int memberID;
+	private double amount;
+	
 
 	public UnionAffiliation(int memberId, double amount) {
-		// TODO Auto-generated constructor stub
+		this.memberID = memberId;
+		this.amount = amount;
 	}
 
 	public ServiceCharge getServiceCharge(Calendar date) {
 		// TODO Auto-generated method stub
-		return null;
+		return servicecharge;
 	}
 
 	public Double getDues() {
-		// TODO Auto-generated method stub
-		return null;
+		return amount;
 	}
 
 }
