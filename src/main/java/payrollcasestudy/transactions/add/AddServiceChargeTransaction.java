@@ -2,7 +2,9 @@ package payrollcasestudy.transactions.add;
 
 import java.util.Calendar;
 
-public class AddServiceChargeTransaction {
+import payrollcasestudy.transactions.Transaction;
+
+public class AddServiceChargeTransaction implements Transaction {
 
 	public AddServiceChargeTransaction(int memberId, Calendar date, double mount) {
 		// TODO Auto-generated constructor stub
