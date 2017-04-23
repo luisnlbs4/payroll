@@ -1,10 +1,9 @@
 package payrollcasestudy.entities;
 
+import payrollcasestudy.entities.affiliations.UnionAffiliation;
 import payrollcasestudy.entities.paymentclassifications.PaymentClassification;
 import payrollcasestudy.entities.paymentmethods.PaymentMethod;
 import payrollcasestudy.entities.paymentschedule.PaymentSchedule;
-import payrollcasestudy.transactions.change.UnionAffiliation;
-
 import java.util.Calendar;
 
 public class Employee {
