@@ -19,4 +19,9 @@ public class UnionAffiliation {
 		return null;
 	}
 
+	public Double getDues() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
