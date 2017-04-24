@@ -1,16 +1,23 @@
 package payrollcasestudy.transactions.change;
 
-import payrollcasestudy.transactions.Transaction;
+import payrollcasestudy.entities.Employee;
+import payrollcasestudy.entities.affiliations.UnionAffiliation;
 
-public class ChangeNoMemberTransaction implements Transaction {
+public class ChangeNoMemberTransaction extends ChangeAffiliationTransaction {
 
-	public ChangeNoMemberTransaction(int employeeId) {
-		// TODO Auto-generated constructor stub
-	}
+    public ChangeNoMemberTransaction(int employeeId) {
+        super(employeeId);
+    }
 
-	public void execute() {
-		// TODO Auto-generated method stub
+    @Override
+    protected UnionAffiliation getAffiliation() {
+        return UnionAffiliation.NO_AFFILIATION;
+    }
 
-	}
-
+    @Override
+    protected void recordMembership(Employee employee) {
+        int memberId = employee.getUnionAffiliation().getMemberId();
+        database.deleteUnionMember(memberId);
+    }
 }
+
