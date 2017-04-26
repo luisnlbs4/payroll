@@ -25,7 +25,7 @@ public class AddServiceChargeTransaction implements Transaction {
 		
 		Employee employee = PayrollDatabase.globalPayrollDatabase.getUnionMember(memberId);
 		if(employee != null){
-				employee.getUnionAffiliation().addServiceCharge(new ServiceCharge(date, amount));
+				employee.getUnionAffiliation().addServiceCharge(date, amount);
 		}
 	}
 }
