@@ -39,6 +39,7 @@ public class ChangeNoMemberTransactionTest {
 
         employee = database.getEmployee(employeeId);
         assertThat(employee.getUnionAffiliation(), is(UnionAffiliation.NO_AFFILIATION));
+
         assertThat(database.getUnionMember(memberId), is(nullValue()));
     }
 }

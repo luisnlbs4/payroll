@@ -1,22 +1,35 @@
 package payrollcasestudy.transactions.add;
 
-import payrollcasestudy.boundaries.PayrollDatabase;
-import payrollcasestudy.entities.Employee;
-import payrollcasestudy.entities.affiliations.UnionAffiliation;
-import payrollcasestudy.transactions.Transaction;
-
 import java.util.Calendar;
 
-public class AddServiceChargeTransaction implements Transaction{
+import payrollcasestudy.boundaries.PayrollDatabase;
+import payrollcasestudy.entities.Employee;
+import payrollcasestudy.entities.SalesReceipt;
+import payrollcasestudy.entities.ServiceCharge;
+import payrollcasestudy.entities.paymentclassifications.CommissionedPaymentClassification;
+import payrollcasestudy.entities.paymentclassifications.PaymentClassification;
+import payrollcasestudy.transactions.Transaction;
 
-    PayrollDatabase database = PayrollDatabase.globalPayrollDatabase;
-
-    public AddServiceChargeTransaction(int memberId, Calendar date, double amount) {
-        Employee unionMember = database.getUnionMember(memberId);
-        UnionAffiliation unionAffiliation = unionMember.getUnionAffiliation();
-        unionAffiliation.addServiceCharge(date, amount);
+public class AddServiceChargeTransaction implements Transaction {
+	private int memberId;
+	private Calendar date;
+	private double amount;
+	
+	public AddServiceChargeTransaction(int memberId, Calendar date, double amount){
+        this.memberId = memberId;
+        this.date = date;
+        this.amount = amount;
     }
-    @Override
-    public void execute(){
-    }
+	
+	public void execute(){
+		
+		Employee employee = PayrollDatabase.globalPayrollDatabase.getUnionMember(memberId);
+		if(employee != null){
+				employee.getUnionAffiliation().addServiceCharge(new ServiceCharge(date, amount));
+		}
+	}
 }
+
+
+
+

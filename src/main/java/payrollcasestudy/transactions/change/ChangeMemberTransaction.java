@@ -1,27 +1,24 @@
 package payrollcasestudy.transactions.change;
 
-import payrollcasestudy.boundaries.PayrollDatabase;
 import payrollcasestudy.entities.Employee;
 import payrollcasestudy.entities.affiliations.UnionAffiliation;
 
-public class ChangeMemberTransaction extends ChangeAffiliationTransaction {
-    private int memberId;
-    private double dues;
+public class ChangeMemberTransaction extends ChangeEmployeeTransaction{
 
-    public ChangeMemberTransaction(int employeeId, int memberId, double dues) {
-        super(employeeId);
-        this.memberId = memberId;
-        this.dues = dues;
-    }
+	private int memberId;
+	private double d;
 
-    @Override
-    protected UnionAffiliation getAffiliation() {
-        return new UnionAffiliation(memberId, dues);
-    }
+	public ChangeMemberTransaction(int employeeId, int memberId, double d) {
+		super(employeeId);
+		this.memberId = memberId;
+		this.d = d;
+	}
 
-    @Override
-    protected void recordMembership(Employee employee) {
-        PayrollDatabase.globalPayrollDatabase.addUnionMember(memberId, employee);
-    }
+	@Override
+	public void changeEmployee(Employee employee) {
+		employee.setUnionAffiliation(new UnionAffiliation(memberId,d));
+		database.addUnionMember(memberId, employee);
+		
+	}
+
 }
-

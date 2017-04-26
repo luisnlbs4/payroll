@@ -4,6 +4,7 @@ import payrollcasestudy.entities.affiliations.UnionAffiliation;
 import payrollcasestudy.entities.paymentclassifications.PaymentClassification;
 import payrollcasestudy.entities.paymentmethods.PaymentMethod;
 import payrollcasestudy.entities.paymentschedule.PaymentSchedule;
+
 import java.util.Calendar;
 
 public class Employee {
@@ -13,13 +14,14 @@ public class Employee {
     private int employeeId;
     private String name;
     private String address;
-    private UnionAffiliation unionAffiliation = UnionAffiliation.NO_AFFILIATION;
-
+    private UnionAffiliation unionAffiliation;
 
     public Employee(int employeeId, String name, String address) {
         this.employeeId = employeeId;
         this.name = name;
         this.address = address;
+        unionAffiliation = UnionAffiliation.NO_AFFILIATION;
+        
     }
 
     public PaymentClassification getPaymentClassification() {
@@ -72,18 +74,21 @@ public class Employee {
 
     public void payDay(PayCheck payCheck) {
         double grossPay = paymentClassification.calculatePay(payCheck);
-        double netPay = grossPay;
+        double netPay = grossPay - (5*unionAffiliation.getDues());
         payCheck.setGrossPay(grossPay);
         payCheck.setNetPay(netPay);
+        payCheck.setDeductions(5*unionAffiliation.getDues());
         paymentMethod.pay(payCheck);
     }
 
-	public void setUnionAffiliation(UnionAffiliation unionAffiliation) {
-        this.unionAffiliation = unionAffiliation;		
+	public UnionAffiliation getUnionAffiliation() {
+		// TODO Auto-generated method stub
+		return unionAffiliation;
 	}
 
-	public UnionAffiliation getUnionAffiliation() {
-		return unionAffiliation;
+	public void setUnionAffiliation(UnionAffiliation unionAffiliation) {
+		// TODO Auto-generated method stub
+		this.unionAffiliation = unionAffiliation;
 	}
 
 }
