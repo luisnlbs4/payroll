@@ -6,7 +6,6 @@ import payrollcasestudy.DatabaseResource;
 import payrollcasestudy.entities.Employee;
 import payrollcasestudy.entities.ServiceCharge;
 import payrollcasestudy.entities.affiliations.UnionAffiliation;
-//import payrollcasestudy.entities.affiliations.UnionAffiliation;
 import payrollcasestudy.transactions.Transaction;
 
 import java.util.Calendar;
@@ -32,13 +31,13 @@ public class AddServiceChargeTransactionTest {
         assertThat(employee, is(notNullValue()));
 
         int memberId = 86; //Maxwell Smart
-        UnionAffiliation unionAffiliation = new UnionAffiliation(memberId,12.5); //monto cobrado mensualmente
+        UnionAffiliation unionAffiliation = new UnionAffiliation(memberId,12.5);
         employee.setUnionAffiliation(unionAffiliation);
         database.getInstance().addUnionMember(memberId, employee);
         assertThat(database.getInstance().getUnionMember(memberId), is(notNullValue()));
 
         Calendar date = new GregorianCalendar(2001, 11, 01);
-        AddServiceChargeTransaction addServiceChargeTransaction = new AddServiceChargeTransaction(memberId,date,12.95);
+        AddServiceChargeTransaction addServiceChargeTransaction = new AddServiceChargeTransaction(memberId, date, 12.95);
         addServiceChargeTransaction.execute();
         ServiceCharge serviceCharge = unionAffiliation.getServiceCharge(date);
         assertThat(serviceCharge, is(notNullValue()));

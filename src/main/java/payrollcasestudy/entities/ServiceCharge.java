@@ -18,9 +18,4 @@ public class ServiceCharge {
     public Calendar getDate() {
         return date;
     }
-    
-    public void setAmount(Double amount)
-    {
-    	this.amount=amount;
-    }
 }
