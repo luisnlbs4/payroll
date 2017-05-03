@@ -37,7 +37,7 @@ public class Main {
 		HashMap<String,Object> view = new HashMap<String, Object>();
 		get("/Employees", (request, response) -> {
 			ArrayList<Employee> employees=new ArrayList<>();
-			employees =EmployeePresenter.getEmployees();
+			employees =EmployeePresenter.get_Empleados();
 			view.put("employees", employees);
 		      return new ModelAndView(view, "templates/indexEmployee.vm");
 		    }, new VelocityTemplateEngine());

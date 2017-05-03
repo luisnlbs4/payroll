@@ -42,7 +42,7 @@ public class EmployeePresenter {
 	}
 
 
-	public static ArrayList<Employee> getEmployees() {
+	public static ArrayList<Employee> get_Empleados() {
 		ArrayList<Employee> Employees = new ArrayList<>();
 		Employee employee;
 		Set<Integer> employeeIds=PayrollDatabase.globalPayrollDatabase.getAllEmployeeIds();
