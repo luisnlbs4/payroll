@@ -47,4 +47,17 @@ public class PayrollDatabase {
     public Set<Integer> getAllEmployeeIds() {
         return employees.keySet();
     }
+    
+    public ArrayList<Employee> getAllEmployees() {    	
+		ArrayList<Employee> Employees = new ArrayList<>();
+		Employee employee;
+		Set<Integer> employeeIds= getAllEmployeeIds();
+		List<Integer> employeeIdsList = new ArrayList<>(employeeIds);
+		for(int i = 0; i < employeeIdsList.size();i++ )
+		{
+			employee = getEmployee(employeeIdsList.get(i));
+			Employees.add(employee);
+		}
+		return Employees;
+	}
 }
