@@ -7,9 +7,9 @@
   </head>
   <body>
     <div class='ui container'>
-           <h2 class='center'>Gestion de empleados</h2>
-            <a href='/NewEmployee' type='button' class='ui button'>Crear Nuevo</a>
-            <a href='/Employees' type='button' class='ui button'>Ver Todos</a>
+           <h2 class='center'>Proyecto Arqui</h2>
+            <a href='/NewEmployee' type='button' class='ui button'>NuevoEmpleado</a>
+            <a href='/Employees' type='button' class='ui button'>VerEmpleados</a>
      </div>"
   </body>
 </html>

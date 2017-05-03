@@ -1,9 +1,11 @@
 import static spark.Spark.get;
 import static spark.Spark.post;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import payrollcasestudy.entities.Employee;
 import Presenters.EmployeePresenter;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
@@ -19,12 +21,16 @@ public class Main {
 		get("/NewEmployee", (request, response) -> {
 			 		      return new ModelAndView(new HashMap(), "templates/newEmployee.vm");
 			 		    }, new VelocityTemplateEngine());
-		post("/Employees", (request, response) -> {
-		      return new ModelAndView(new HashMap(), "templates/indexEmployee.vm");
-		    }, new VelocityTemplateEngine());
 		
 		post("/newEmployee", (request, response) -> EmployeePresenter.registrar_empleado_Asalariado(request.queryParams("nombre"),request.queryParams("direccion"),request.queryParams("ci"), request.queryParams("salario")));
 
+		HashMap<String,Object> view = new HashMap<String, Object>();
+		get("/Employees", (request, response) -> {
+			ArrayList<Employee> employees=new ArrayList<>();
+			employees =EmployeePresenter.getEmployees();
+			view.put("employees", employees);
+		      return new ModelAndView(view, "templates/indexEmployee.vm");
+		    }, new VelocityTemplateEngine());
 		
 		
 
