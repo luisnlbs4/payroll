@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>Hello Friend!</title>
+    <title>ArquiSoft</title>
       <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.min.css" media="screen" title="no title" charset="utf-8">
   	  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   	  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.min.js"></script>
@@ -8,8 +8,8 @@
   <body>
     <div class='ui container'>
            <h2 class='center'>Gestion de empleados</h2>
-            <a href='/createNewEmployee' type='button' class='ui button'>Crear Nuevo</a>
-            <a href='/showAllEmployees' type='button' class='ui button'>Ver Todos</a>
+            <a href='/NewEmployee' type='button' class='ui button'>Crear Nuevo</a>
+            <a href='/Employees' type='button' class='ui button'>Ver Todos</a>
      </div>"
   </body>
 </html>
