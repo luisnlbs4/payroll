@@ -15,13 +15,16 @@
                
             <a href='/NewEmployee' type='button' class='ui green fluid button'>NuevoEmpleado</a>
             <br>
+            <a href='/NewEmployeeComisioned' type='button' class='ui button'>NuevoEmpleadoConComision</a>
+             <br>
+            <a href='/NewEmployeeByHours' type='button' class='ui button'>NuevoEmpleadoPorHoras</a>
+             <br>
             <a href='/Employees' type='button' class='ui blue fluid button'>VerEmpleados</a>    
       </div>
       </div>
             
      
      
-            <a href='/NewEmployeeComisioned' type='button' class='ui button'>NuevoEmpleadoConComision</a>
-            <a href='/NewEmployeeByHours' type='button' class='ui button'>NuevoEmpleadoPorHoras</a>
+            
   </body>
 </html>
