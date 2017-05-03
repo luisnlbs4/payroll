@@ -13,7 +13,7 @@
            <i class="users massive icon"></i>
            <h2 class="ui horizontal divider header">Proyecto Arqui </h2>
                
-            <a href='/NewEmployee' type='button' class='ui green fluid button'>NuevoEmpleadoSalario</a>
+            <a href='/NewEmployee' type='button' class='ui green fluid button'>NuevoEmpleadoSalario	</a>
             <br>
             <a href='/NewEmployeeComisioned' type='button' class='ui green fluid button'>NuevoEmpleadoConComision</a>
              <br>

@@ -42,7 +42,7 @@ public class EmployeePresenter {
 	}
 
 
-	public static ArrayList<Employee> get_Empleados() {
+	public static ArrayList<Employee> Devolver_empleados() {
 		ArrayList<Employee> Employees = new ArrayList<>();
 		return Employees=PayrollDatabase.globalPayrollDatabase.getAllEmployees();
 	}

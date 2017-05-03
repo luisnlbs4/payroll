@@ -42,11 +42,11 @@
     </tr>
   </thead>
   <tbody>
-        	#foreach ($employee in $employees)
+        	#foreach ($empleado in $employees)
     <tr>
-                <td>$employee.getEmployeeId().toString()</td>
-			    <td>$employee.getName().toString()</td>
-			    <td>$employee.getAddress().toString()</td>	
+                <td>$empleado.getEmployeeId().toString()</td>
+			    <td>$empleado.getName().toString()</td>
+			    <td>$empleado.getAddress().toString()</td>	
     </tr>
 			#end
   </tbody>
