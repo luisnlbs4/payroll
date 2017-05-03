@@ -17,7 +17,7 @@ public class EmployeePresenter {
 		 Transaction addEmployeeTransaction =
 	                new AddSalariedEmployeeTransaction(ci, nombre_empleado, direccion_empleado,amountt);
 	        addEmployeeTransaction.execute();
-	        return "Empleado creado satisfactoriamente!";
+	        return "Empleado Asalariado creado satisfactoriamente!";
 	}
 
 	public static ArrayList<Employee> getEmployees() {
