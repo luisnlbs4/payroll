@@ -1,0 +1,38 @@
+<html>
+    <head>
+    <title>Hello Friend!</title>
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.min.css" media="screen" title="no title" charset="utf-8">
+  	  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  	  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.min.js"></script>
+  </head>
+   <body>
+
+
+     <div class='ui container'>
+	     <form class="ui form" method="post" action="/newEmployeeComisioned">
+	         <div class="field">
+	           <label>Nombre</label>
+	           <input type="text" name="nombre" placeholder="Nombre Completo">
+	         </div>
+	         <div class="field">
+	           <label>Carnet de identidad</label>
+	           <input type="text" name="ci" placeholder="Carnet de Identidad">
+	         </div>
+	         <div class="field">
+	           <label>Direccion</label>
+	           <input type="text" name="direccion" placeholder="Direccion">
+	         </div>
+	         <div class="field">
+			      <label>Salario mensual:</label>
+			      <input type="text" name="salario" placeholder="Salario">
+			     </div>
+           <div class="field">
+			      <label>Comision por ventas:</label>
+			      <input type="text" name="comision" placeholder="Comision">
+			     </div>
+	         <input type="submit" class="ui green button" value="Guardar">
+	   </form>
+
+      </div>
+   </body>
+ </html>

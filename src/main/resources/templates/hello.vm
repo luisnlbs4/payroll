@@ -9,7 +9,9 @@
     <div class='ui container'>
            <h2 class='center'>Proyecto Arqui</h2>
             <a href='/NewEmployee' type='button' class='ui button'>NuevoEmpleado</a>
+            <a href='/NewEmployeeComisioned' type='button' class='ui button'>NuevoEmpleadoConComision</a>
+            <a href='/NewEmployeeByHours' type='button' class='ui button'>NuevoEmpleadoPorHoras</a>
             <a href='/Employees' type='button' class='ui button'>VerEmpleados</a>
-     </div>"
+     </div>
   </body>
 </html>

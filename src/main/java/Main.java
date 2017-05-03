@@ -22,8 +22,18 @@ public class Main {
 			 		      return new ModelAndView(new HashMap(), "templates/newEmployee.vm");
 			 		    }, new VelocityTemplateEngine());
 		
+		get("/NewEmployeeComisioned", (request, response) -> {
+		      return new ModelAndView(new HashMap(), "templates/newEmployeeComisioned.vm");
+		    }, new VelocityTemplateEngine());
+		
+		get("/NewEmployeeByHours", (request, response) -> {
+		      return new ModelAndView(new HashMap(), "templates/newEmployeeByHours.vm");
+		    }, new VelocityTemplateEngine());
+		
 		post("/newEmployee", (request, response) -> EmployeePresenter.registrar_empleado_Asalariado(request.queryParams("nombre"),request.queryParams("direccion"),request.queryParams("ci"), request.queryParams("salario")));
-
+		post("/newEmployeeComisioned", (request, response) -> EmployeePresenter.registrar_empleado_Asalariado_con_Comision(request.queryParams("nombre"),request.queryParams("direccion"),request.queryParams("ci"), request.queryParams("salario"),request.queryParams("comision")));
+		post("/newEmployeeByHours", (request, response) -> EmployeePresenter.registrar_empleado_Asalariado(request.queryParams("nombre"),request.queryParams("direccion"),request.queryParams("ci"), request.queryParams("salario")));
+		
 		HashMap<String,Object> view = new HashMap<String, Object>();
 		get("/Employees", (request, response) -> {
 			ArrayList<Employee> employees=new ArrayList<>();
