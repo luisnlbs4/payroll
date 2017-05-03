@@ -6,10 +6,20 @@
   	  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.min.js"></script>
   </head>
   <body>
-    <div class='ui container'>
-           <h2 class='center'>Proyecto Arqui</h2>
-            <a href='/NewEmployee' type='button' class='ui button'>NuevoEmpleado</a>
-            <a href='/Employees' type='button' class='ui button'>VerEmpleados</a>
-     </div>"
+   <br><br><br><br>
+     <div class="ui center aligned basic segment">
+   <div class="ui container teal segment">
+   
+           <i class="users massive icon"></i>
+           <h2 class="ui horizontal divider header">Proyecto Arqui </h2>
+               
+            <a href='/NewEmployee' type='button' class='ui green fluid button'>NuevoEmpleado</a>
+            <br>
+            <a href='/Employees' type='button' class='ui blue fluid button'>VerEmpleados</a>    
+      </div>
+      </div>
+            
+     
+     
   </body>
 </html>
