@@ -13,6 +13,16 @@ import payrollcasestudy.transactions.add.AddSalariedEmployeeTransaction;
 
 public class EmployeePresenter {
 	
+	public static String registrar_empleado(String tipo, String nombre_empleado,String direccion_empleado,String ci_employee, String amount,String comision){
+		if(tipo == "horas"){
+			return registrar_empleado_por_hora(nombre_empleado, direccion_empleado, ci_employee, amount);
+		}
+		if(comision != ""){
+			return registrar_empleado_Asalariado_con_Comision(nombre_empleado, direccion_empleado, ci_employee, amount,comision);
+		}
+		return registrar_empleado_Asalariado(nombre_empleado, direccion_empleado, ci_employee, amount);
+	}
+	
 	public static String registrar_empleado_Asalariado(String nombre_empleado,String direccion_empleado,String ci_employee, String amount) {
 		int ci = Integer.parseInt(ci_employee);
 		double amountt= Double.parseDouble(amount);

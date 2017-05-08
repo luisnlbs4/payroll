@@ -5,36 +5,62 @@
   	  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   	  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.min.js"></script>
   </head>
-   <body>
-        <a class="ui red button"href="/">Atras</a>  
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
+	<body>
+		<div class="ui segment basic">
+			<a class="ui red button"href="/">Atras</a>
+		</div>
 
-<div class="ui container green segment">
+		<div class="ui container green segment">
+			<form class="ui form" method="post" action="/newEmployee">
+				<div class="field">
+					<label>Escoja el tipo de empleado a registrar.</label>
+					<div class="inline fields">
+						<div class="field">
+							<div class="ui radio checkbox">
+								<input type="radio" name="kind" value="fijo" checked="checked" onclick="showComision()">
+								<label>Empleado fijo</label>
+							</div>
+						</div>
+						<div class="field">
+							<div class="ui radio checkbox">
+								<input type="radio" name="kind" value="horas" onclick="hideComision()">
+								<label>Empleado por horas</label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="field">
+					<label>Nombre</label>
+					<input type="text" name="nombre" placeholder="Nombre Completo" required>
+				</div>
+				<div class="field">
+					<label>Carnet de identidad</label>
+					<input type="text" name="ci" placeholder="Carnet de Identidad" required>
+				</div>
+				<div class="field">
+					<label>Direccion</label>
+					<input type="text" name="direccion" placeholder="Direccion" required>
+				</div>
+				<div class="field">
+					<label>Salario:</label>
+					<input type="text" name="salario" placeholder="Salario" required>
+				</div>
+				<div class="field" id="comision">
+				 <label>Comision por ventas: <span class="ui tiny header red">*solo si recibe comision</span></label>
+				 <input type="text" name="comision" placeholder="Comision">
+				</div>
+				<input type="submit" class="ui green button" value="Guardar">
+			</form>
+		</div>
 
-	     <form class="ui form" method="post" action="/newEmployee">
-	         <div class="field">
-	           <label>Nombre</label>
-	           <input type="text" name="nombre" placeholder="Nombre Completo">
-	         </div>
-	         <div class="field">
-	           <label>Carnet de identidad</label>
-	           <input type="text" name="ci" placeholder="Carnet de Identidad">
-	         </div>
-	         <div class="field">
-	           <label>Direccion</label>
-	           <input type="text" name="direccion" placeholder="Direccion">
-	         </div>
-	         <div class="field">
-			      <label>Salario:</label>
-			      <input type="text" name="salario" placeholder="Salario">
-			 </div>
-	         <input type="submit" class="ui green button" value="Guardar">
-	   </form>
-
-      </div>
-   </body>
+	</body>
  </html>
+
+ <script type="text/javascript">
+	function hideComision(){
+		document.getElementById("comision").style.display = "none";
+	}
+	function showComision(){
+		document.getElementById("comision").style.display = "block";
+	}
+ </script>

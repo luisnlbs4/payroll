@@ -9,22 +9,21 @@
    <br><br><br><br>
      <div class="ui center aligned basic segment">
    <div class="ui container teal segment">
-   
+
            <i class="users massive icon"></i>
            <h2 class="ui horizontal divider header">Proyecto Arqui </h2>
-               
-            <a href='/NewEmployee' type='button' class='ui green fluid button'>NuevoEmpleadoSalario	</a>
-            <br>
-            <a href='/NewEmployeeComisioned' type='button' class='ui green fluid button'>NuevoEmpleadoConComision</a>
+            <a href='/NewEmployee' type='button' class='ui green fluid button'>Registrar Nuevo Empleado</a>
+           <br>
+            <!--   <a href='/NewEmployeeComisioned' type='button' class='ui green fluid button'>NuevoEmpleadoConComision</a>
              <br>
             <a href='/NewEmployeeByHours' type='button' class='ui green fluid button'>NuevoEmpleadoPorHoras</a>
-             <br>
-            <a href='/Employees' type='button' class='ui blue fluid button'>VerEmpleados</a>    
+             <br>-->
+            <a href='/Employees' type='button' class='ui blue fluid button'>VerEmpleados</a>
       </div>
       </div>
-            
-     
-     
-            
+
+
+
+
   </body>
 </html>
