@@ -5,20 +5,10 @@
   	  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   	  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.min.js"></script>
   </head>
-  <body>
-  
-     <a class="ui red button"href="/">Atras</a>  
-     
-     
-     
-
-
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
+  <body style="background-color:#3F83A0">
+    <div class="ui segment basic">
+      <a class="ui red button"href="/">Atras</a>
+    </div>
 
 <div class="ui container green segment">
 
@@ -46,7 +36,7 @@
     <tr>
                 <td>$empleado.getEmployeeId().toString()</td>
 			    <td>$empleado.getName().toString()</td>
-			    <td>$empleado.getAddress().toString()</td>	
+			    <td>$empleado.getAddress().toString()</td>
     </tr>
 			#end
   </tbody>
