@@ -19,7 +19,7 @@ public class EmployeePresenter {
 			return registrar_empleado_por_hora(nombre_empleado, direccion_empleado, ci_employee, amount);
 		}
 		if(tipoInt == 1){
-			if(comision == "")
+			if ( (comision == null) || (comision.equals("")) )
 			{
 				return registrar_empleado_Asalariado(nombre_empleado, direccion_empleado, ci_employee, amount);
 
