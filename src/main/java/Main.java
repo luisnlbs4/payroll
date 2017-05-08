@@ -36,7 +36,12 @@ public class Main {
 		get("/Employees", (request, response) -> {
 			view.put("employees", EmployeePresenter.Devolver_empleados());
 		      return new ModelAndView(view, "templates/employee/indexEmployee.vtl");
-		    }, new VelocityTemplateEngine());
+		    }, new VelocityTemplateEngine());		
+		get("/EmployeeAddHours/:id", (request, response) -> {			
+			Employee employee = EmployeePresenter.getEmployee(Integer.parseInt(request.params(":id")));
+			view.put("employee", employee);
+			  return new ModelAndView(view, "templates/employee/employeeAddhours.vtl");
+			}, new VelocityTemplateEngine());
 
 	}
 }

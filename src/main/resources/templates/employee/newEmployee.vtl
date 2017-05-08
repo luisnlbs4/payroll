@@ -1,6 +1,6 @@
 <html>
     <head>
-    <title>Hello Friend!</title>
+    <title>Registrando</title>
       <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.min.css" media="screen" title="no title" charset="utf-8">
   	  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   	  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.min.js"></script>
@@ -35,7 +35,7 @@
 				</div>
 				<div class="field">
 					<label>Carnet de identidad</label>
-					<input type="text" name="ci" placeholder="Carnet de Identidad" required>
+					<input type="number" name="ci" placeholder="Carnet de Identidad" min="1" required>
 				</div>
 				<div class="field">
 					<label>Direccion</label>
@@ -43,11 +43,11 @@
 				</div>
 				<div class="field">
 					<label>Salario:</label>
-					<input type="text" name="salario" placeholder="Salario" required>
+					<input type="number" name="salario" placeholder="Salario" min="1" required>
 				</div>
 				<div class="field" id="bloquecomision">
 				 <label>Comision por ventas: <span class="ui tiny header red">*solo si recibe comision</span></label>
-				 <input type="text" name="comision" placeholder="Comision">
+				 <input type="number" name="comision" min="1" placeholder="Comision">
 				</div>
 				<input type="submit" class="ui green button" value="Guardar">
 			</form>

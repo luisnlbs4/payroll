@@ -88,6 +88,7 @@
       <th>Nombres</th>
       <th>Direccion</th>
       <th>Salario por hora</th>
+      <th></th>
     </tr>
   </thead>
   <tbody> 
@@ -99,6 +100,7 @@
 			    <td>$empleado.getName().toString()</td>
 			    <td>$empleado.getAddress().toString()</td>
 			    <td>$empleado.getPaymentClassification().getHourlyRate()</td>
+			    <td><a href="/EmployeeAddHours/$empleado.getEmployeeId().toString()" class="ui yellow button ">Ver Detalle</a></td>
 			    
 			#end    
     </tr>

@@ -61,5 +61,9 @@ public class EmployeePresenter {
 		return PayrollDatabase.globalPayrollDatabase.getAllEmployees();
 	}
 
+	public static Employee getEmployee(int employe_ci) {
+		return PayrollDatabase.globalPayrollDatabase.getEmployee(employe_ci);
+	}
+
 
 }
