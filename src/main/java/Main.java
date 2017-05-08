@@ -14,33 +14,28 @@ public class Main {
 
 	public static void main(String[] args) {
 		
+		HashMap<String,Object> view = new HashMap<String, Object>();
+
+		
 		get("/", (request, response) -> {
-		      return new ModelAndView(new HashMap(), "templates/hello.vm");
+		      return new ModelAndView(view, "templates/welcome/index.vtl");
 		    }, new VelocityTemplateEngine());
 		
+		
+		
+		
 		get("/NewEmployee", (request, response) -> {
-			 		      return new ModelAndView(new HashMap(), "templates/newEmployee.vm");
-			 		    }, new VelocityTemplateEngine());
-     /*   post("/createHourly", (request, response) -> {
-			
-			EmployeeController.createNewEmployeeHourly(request.queryParams("id"),
-					request.queryParams("name"),request.queryParams("address"), request.queryParams("hourly"));
-			response.redirect("/employees");
-            return new ModelAndView(view, "allEmployee.vtl");
-        }, new VelocityTemplateEngine());*/
-        
-   	
+			 		      return new ModelAndView(view, "templates/employee/newEmployee.vtl");
+			 		    }, new VelocityTemplateEngine());		
 		post("/newEmployee", (request, response) -> {		
 			 EmployeePresenter.registrar_empleado(request.queryParams("kind"),request.queryParams("nombre"),request.queryParams("direccion"),request.queryParams("ci"), request.queryParams("salario"),request.queryParams("comision"));
 			 response.redirect("/Employees");
-	         return new ModelAndView(new HashMap(), "templates/indexEmployee.vm");
+	         return new ModelAndView(view, "templates/employee/indexEmployee.vtl");
 		}, new VelocityTemplateEngine());
 			
-
-		HashMap<String,Object> view = new HashMap<String, Object>();
 		get("/Employees", (request, response) -> {
 			view.put("employees", EmployeePresenter.Devolver_empleados());
-		      return new ModelAndView(view, "templates/indexEmployee.vm");
+		      return new ModelAndView(view, "templates/employee/indexEmployee.vtl");
 		    }, new VelocityTemplateEngine());
 
 	}
