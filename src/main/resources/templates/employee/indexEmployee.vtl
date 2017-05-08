@@ -17,26 +17,90 @@
        Lista de Empleados
    </h1></div>
 
-<div class="ui divider">
-</div>
+<div class="ui divider"></div>
 
 
 
   <div class="ui container">
+  <h3 class="ui teal header">Empleados por Salario:</h3>
+  <div class="ui divider"></div>
   <table class="ui very basic table">
   <thead>
     <tr>
       <th>CI</th>
       <th>Nombres</th>
       <th>Direccion</th>
+      <th>Salario</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody> 
         	#foreach ($empleado in $employees)
+        	
     <tr>
+            #if($empleado.getClasificationPayment() == "Salario")
                 <td>$empleado.getEmployeeId().toString()</td>
 			    <td>$empleado.getName().toString()</td>
 			    <td>$empleado.getAddress().toString()</td>
+			    <td>$empleado.getPaymentClassification().getSalary()</td>
+			    
+			#end    
+    </tr>
+			#end
+  </tbody>
+</table>
+
+
+  <h3 class="ui teal header">Empleados por Comision:</h3>
+  <div class="ui divider"></div>
+  <table class="ui very basic table">
+  <thead>
+    <tr>
+      <th>CI</th>
+      <th>Nombres</th>
+      <th>Direccion</th>
+      <th>Salario</th>
+      <th>Comision</th>
+    </tr>
+  </thead>
+  <tbody> 
+        	#foreach ($empleado in $employees)
+        	
+    <tr>
+            #if($empleado.getClasificationPayment() == "Comision")
+                <td>$empleado.getEmployeeId().toString()</td>
+			    <td>$empleado.getName().toString()</td>
+			    <td>$empleado.getAddress().toString()</td>
+			    <td>$empleado.getPaymentClassification().getMonthlySalary()</td>
+			    <td>$empleado.getPaymentClassification().getCommissionRate()</td>
+			#end    
+    </tr>
+			#end
+  </tbody>
+</table>
+
+
+  <h3 class="ui teal header">Empleados por Hora:</h3>
+  <div class="ui divider"></div>
+  <table class="ui very basic table">
+  <thead>
+    <tr>
+      <th>CI</th>
+      <th>Nombres</th>
+      <th>Direccion</th>
+      <th>Salario por hora</th>
+    </tr>
+  </thead>
+  <tbody> 
+        	#foreach ($empleado in $employees)
+        	
+    <tr>
+            #if($empleado.getClasificationPayment() == "Hora")
+                <td>$empleado.getEmployeeId().toString()</td>
+			    <td>$empleado.getName().toString()</td>
+			    <td>$empleado.getAddress().toString()</td>
+			    <td>$empleado.getPaymentClassification().getHourlyRate()</td>
+			    
+			#end    
     </tr>
 			#end
   </tbody>

@@ -2,7 +2,10 @@ package payrollcasestudy.entities;
 
 import payrollcasestudy.boundaries.PayrollDatabase;
 import payrollcasestudy.entities.affiliations.UnionAffiliation;
+import payrollcasestudy.entities.paymentclassifications.CommissionedPaymentClassification;
+import payrollcasestudy.entities.paymentclassifications.HourlyPaymentClassification;
 import payrollcasestudy.entities.paymentclassifications.PaymentClassification;
+import payrollcasestudy.entities.paymentclassifications.SalariedClassification;
 import payrollcasestudy.entities.paymentmethods.PaymentMethod;
 import payrollcasestudy.entities.paymentschedule.PaymentSchedule;
 
@@ -106,16 +109,14 @@ public class Employee {
 		return PayrollDatabase.globalPayrollDatabase.getEmployee(employeeId);
 	}
 	
-	public static List<Employee> getAllEmployees(){
-		List<Employee> allEmployees = new ArrayList<>();
-		Employee employee;
-		Set<Integer> employeeIds=PayrollDatabase.globalPayrollDatabase.getAllEmployeeIds();
-		List<Integer> employeeIdsList = new ArrayList<>(employeeIds);
-		for(int i = 0; i < employeeIdsList.size();i++ ){
-			employee = PayrollDatabase.globalPayrollDatabase.getEmployee(employeeIdsList.get(i));
-			allEmployees.add(employee);
-		}
-		return allEmployees;
-	}
-	
+	public String getClasificationPayment()
+	 {
+	  		if(paymentClassification instanceof HourlyPaymentClassification)
+	 			return "Hora";	
+	 		if(paymentClassification instanceof SalariedClassification)
+	 			return "Salario";
+	 		if(paymentClassification instanceof CommissionedPaymentClassification)
+	 			return "Comision";	
+	 		return "";
+	 }	
 }
