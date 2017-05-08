@@ -17,13 +17,13 @@
 					<div class="inline fields">
 						<div class="field">
 							<div class="ui radio checkbox">
-								<input type="radio" name="kind" value="fijo" checked="checked" onclick="showComision()">
+								<input type="radio" name="kind" value="1" checked="checked" onclick="showComision()">
 								<label>Empleado fijo</label>
 							</div>
 						</div>
 						<div class="field">
 							<div class="ui radio checkbox">
-								<input type="radio" name="kind" value="horas" onclick="hideComision()">
+								<input type="radio" name="kind" value="2" onclick="hideComision()">
 								<label>Empleado por horas</label>
 							</div>
 						</div>
@@ -45,7 +45,7 @@
 					<label>Salario:</label>
 					<input type="text" name="salario" placeholder="Salario" required>
 				</div>
-				<div class="field" id="comision">
+				<div class="field" id="bloquecomision">
 				 <label>Comision por ventas: <span class="ui tiny header red">*solo si recibe comision</span></label>
 				 <input type="text" name="comision" placeholder="Comision">
 				</div>
@@ -58,9 +58,9 @@
 
  <script type="text/javascript">
 	function hideComision(){
-		document.getElementById("comision").style.display = "none";
+		document.getElementById("bloquecomision").style.display = "none";
 	}
 	function showComision(){
-		document.getElementById("comision").style.display = "block";
+		document.getElementById("bloquecomision").style.display = "block";
 	}
  </script>

@@ -14,13 +14,20 @@ import payrollcasestudy.transactions.add.AddSalariedEmployeeTransaction;
 public class EmployeePresenter {
 	
 	public static String registrar_empleado(String tipo, String nombre_empleado,String direccion_empleado,String ci_employee, String amount,String comision){
-		if(tipo == "horas"){
+		int tipoInt = Integer.parseInt(tipo);
+		if(tipoInt == 2){
 			return registrar_empleado_por_hora(nombre_empleado, direccion_empleado, ci_employee, amount);
 		}
-		if(comision != ""){
+		if(tipoInt == 1){
+			if(comision == "")
+			{
+				return registrar_empleado_Asalariado(nombre_empleado, direccion_empleado, ci_employee, amount);
+
+			}
 			return registrar_empleado_Asalariado_con_Comision(nombre_empleado, direccion_empleado, ci_employee, amount,comision);
+
 		}
-		return registrar_empleado_Asalariado(nombre_empleado, direccion_empleado, ci_employee, amount);
+		return "no se guardo nada";
 	}
 	
 	public static String registrar_empleado_Asalariado(String nombre_empleado,String direccion_empleado,String ci_employee, String amount) {
@@ -52,9 +59,8 @@ public class EmployeePresenter {
 	}
 
 
-	public static ArrayList<Employee> Devolver_empleados() {
-		ArrayList<Employee> Employees = new ArrayList<>();
-		return Employees=PayrollDatabase.globalPayrollDatabase.getAllEmployees();
+	public static List<Employee> Devolver_empleados() {		
+		return PayrollDatabase.globalPayrollDatabase.getAllEmployees();
 	}
 
 
