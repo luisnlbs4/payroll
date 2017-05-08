@@ -13,49 +13,47 @@ import payrollcasestudy.transactions.add.AddSalariedEmployeeTransaction;
 
 public class EmployeePresenter {
 	
-	public static String registrar_empleado(String tipo, String nombre_empleado,String direccion_empleado,String ci_employee, String amount,String comision){
+	public static void registrar_empleado(String tipo, String nombre_empleado,String direccion_empleado,String ci_employee, String amount,String comision){
 		int tipoInt = Integer.parseInt(tipo);
 		if(tipoInt == 2){
-			return registrar_empleado_por_hora(nombre_empleado, direccion_empleado, ci_employee, amount);
+			 registrar_empleado_por_hora(nombre_empleado, direccion_empleado, ci_employee, amount);
 		}
 		if(tipoInt == 1){
 			if ( (comision == null) || (comision.equals("")) )
 			{
-				return registrar_empleado_Asalariado(nombre_empleado, direccion_empleado, ci_employee, amount);
+			  registrar_empleado_Asalariado(nombre_empleado, direccion_empleado, ci_employee, amount);
 
 			}
-			return registrar_empleado_Asalariado_con_Comision(nombre_empleado, direccion_empleado, ci_employee, amount,comision);
-
+			else
+			{
+			 registrar_empleado_Asalariado_con_Comision(nombre_empleado, direccion_empleado, ci_employee, amount,comision);
+			}
 		}
-		return "no se guardo nada";
 	}
 	
-	public static String registrar_empleado_Asalariado(String nombre_empleado,String direccion_empleado,String ci_employee, String amount) {
+	public static void registrar_empleado_Asalariado(String nombre_empleado,String direccion_empleado,String ci_employee, String amount) {
 		int ci = Integer.parseInt(ci_employee);
 		double amountt= Double.parseDouble(amount);
 		 Transaction addEmployeeTransaction =
 	                new AddSalariedEmployeeTransaction(ci, nombre_empleado, direccion_empleado,amountt);
 	        addEmployeeTransaction.execute();
-	        return "Empleado Asalariado creado satisfactoriamente!";
 	}
 	
-	public static String registrar_empleado_Asalariado_con_Comision(String nombre_empleado,String direccion_empleado,String ci_employee, String amount,String comision) {
+	public static void registrar_empleado_Asalariado_con_Comision(String nombre_empleado,String direccion_empleado,String ci_employee, String amount,String comision) {
 		int ci = Integer.parseInt(ci_employee);
 		double amountt= Double.parseDouble(amount);
 		double comisionn= Double.parseDouble(comision);
 		 Transaction addEmployeeTransaction =
 	                new AddCommissionedEmployeeTransaction(ci, nombre_empleado, direccion_empleado,amountt,comisionn);
 	        addEmployeeTransaction.execute();
-	        return "Empleado con comision creado satisfactoriamente!";
 	}
 	
-	public static String registrar_empleado_por_hora(String nombre_empleado,String direccion_empleado,String ci_employee, String amount) {
+	public static void registrar_empleado_por_hora(String nombre_empleado,String direccion_empleado,String ci_employee, String amount) {
 		int ci = Integer.parseInt(ci_employee);
 		double amountt= Double.parseDouble(amount);
 		 Transaction addEmployeeTransaction =
 	                new AddHourlyEmployeeTransaction(ci, nombre_empleado, direccion_empleado,amountt);
 	        addEmployeeTransaction.execute();
-	        return "Empleado por hora creado satisfactoriamente!";
 	}
 
 

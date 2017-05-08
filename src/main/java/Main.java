@@ -21,9 +21,21 @@ public class Main {
 		get("/NewEmployee", (request, response) -> {
 			 		      return new ModelAndView(new HashMap(), "templates/newEmployee.vm");
 			 		    }, new VelocityTemplateEngine());
-		
-		
-		post("/newEmployee", (request, response) -> EmployeePresenter.registrar_empleado(request.queryParams("kind"),request.queryParams("nombre"),request.queryParams("direccion"),request.queryParams("ci"), request.queryParams("salario"),request.queryParams("comision")));
+     /*   post("/createHourly", (request, response) -> {
+			
+			EmployeeController.createNewEmployeeHourly(request.queryParams("id"),
+					request.queryParams("name"),request.queryParams("address"), request.queryParams("hourly"));
+			response.redirect("/employees");
+            return new ModelAndView(view, "allEmployee.vtl");
+        }, new VelocityTemplateEngine());*/
+        
+   	
+		post("/newEmployee", (request, response) -> {		
+			 EmployeePresenter.registrar_empleado(request.queryParams("kind"),request.queryParams("nombre"),request.queryParams("direccion"),request.queryParams("ci"), request.queryParams("salario"),request.queryParams("comision"));
+			 response.redirect("/Employees");
+	         return new ModelAndView(new HashMap(), "templates/indexEmployee.vm");
+		}, new VelocityTemplateEngine());
+			
 
 		HashMap<String,Object> view = new HashMap<String, Object>();
 		get("/Employees", (request, response) -> {
