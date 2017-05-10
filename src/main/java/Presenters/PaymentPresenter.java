@@ -17,20 +17,24 @@ public class PaymentPresenter {
 	public static void createPayPerHour(String year, String month, String day, String hours, String employeeId)
 	{
 		Calendar date = new GregorianCalendar(Integer.parseInt(year),Integer.parseInt(month)-1,Integer.parseInt(day));
-		paymentTransaction = new AddTimeCardTransaction(date, Double.parseDouble(hours),Integer.parseInt(employeeId));
+		Transaction paymentTransaction = new AddTimeCardTransaction(date, Double.parseDouble(hours),Integer.parseInt(employeeId));
 		paymentTransaction.execute();
 	}
 	
 	public static void calculateAllPays(String year, String month, String day)
 	{
 		Calendar date = new GregorianCalendar(Integer.parseInt(year),Integer.parseInt(month),Integer.parseInt(day));
-	    paydayTransaction = new PaydayTransaction(date);
+		Transaction paydayTransaction = new PaydayTransaction(date);
 		paydayTransaction.execute();		
 	}
 	
-	public static PayCheck getPayCheckFromPayDayTransaction(String employeeId)
+	public static double getPayCheckFromPayDayTransaction(int employeeID)
 	{
-		return paydayTransaction.getPaycheck(Integer.parseInt(employeeId));
+		double Pay=0.0;					
+	    PayCheck payCheck = paydayTransaction.getPaycheck(employeeID);
+		if (payCheck!=null)			 
+		     Pay=payCheck.getNetPay();
+		return Pay;	
 	}
 	
 

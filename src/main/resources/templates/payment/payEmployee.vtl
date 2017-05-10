@@ -1,35 +1,41 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Papeleta de Pago</title>
-    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+<head>
+    <title>Ver Salario</title>
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.min.css" media="screen" title="no title" charset="utf-8">
+  	  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  	  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.min.js"></script>
   </head>
-  <body>
+  <body style="background-color:#3F83A0">
+  		<div class="ui segment basic">
+			<a class="ui red button"href="/Employees">Atras</a>
+		</div>
   
-  	<div class="container">
-  		<div class="row">
-  			<h1>Pago Total</h1>
-		  	<hr />
-		  	<br>
-  		</div>
-	  	<div class="row">
-	  		<h3>CI: $employee.getEmployeeId()</h3>
-		   	<h3>Nombre: $employee.getName()</h3>
-		   	<h3>Dirección: $employee.getAddress()</h3>
-		   	
-		   	
-  		</div><br>	
-  		
-  			<div class="row">
-  			<h2>Pago Por Hora<h2><hr />
-  			<h3>Monto Hora: $employee.getPaymentClassification().getHourlyRate()</h3>
-  			<h3>Total: $salary</h3>
-
-  		<br>
-  		</div>	  	
-  	</div>
-   	
-   	
-   	    
+  	<div class="ui form container green segment">
+  			<h1>Pago total de un empleado: </h1>
+	  		<h1>Datos del empleado:</h1>
+  			<div class="field inline">
+					<label>Nombre:</label>
+					$employee.getName()
+			<div class="field inline">
+					<label>CI:</label>
+					$employee.getEmployeeId().to
+			</div>			
+			<div class="field inline">
+					<label>Direccion:</label>
+					$employee.getAddress()
+			</div>	     		     
+  		    #if($employee.getClasificationPayment() == "Hora")
+  		    <div class="field inline">
+					<label>Pago Por Hora:</label>
+	  			    $employee.getPaymentClassification().getHourlyRate()
+			</div>	
+			#end  	
+			<div class="ui divider"></div>	 
+			<div class="field inline">
+					<label>Pago Total:</label>
+					$salary
+			</div>	 			
+	</div>   	    
   </body>
 </html>
