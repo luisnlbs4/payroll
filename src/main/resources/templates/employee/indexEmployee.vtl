@@ -10,10 +10,10 @@
       <a class="ui red button"href="/">Atras</a>
     </div>
 
-<div class="ui container green segment">
+<div class="ui container teal segment">
 
 
-   <div class="ui horizontal divider"><h1 class="ui green header center aligned">
+   <div class="ui horizontal divider"><h1 class="ui teal header center aligned">
        Lista de Empleados
    </h1></div>
 
@@ -100,7 +100,10 @@
 			    <td>$empleado.getName().toString()</td>
 			    <td>$empleado.getAddress().toString()</td>
 			    <td>$empleado.getPaymentClassification().getHourlyRate()</td>
-			    <td><a href="/EmployeeAddHours/$empleado.getEmployeeId().toString()" class="ui yellow button ">Ver Detalle</a></td>
+			    <td><a href="/EmployeeAddHours/$empleado.getEmployeeId().toString()" class="ui yellow button ">Agregar Horas Trabajadas</a>
+			    <a href="/pay/show/$empleado.getEmployeeId().toString()" class="ui blue button ">Ver Salario</a></td>
+			    
+			    
 			    
 			#end    
     </tr>
