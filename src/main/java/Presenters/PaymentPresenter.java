@@ -24,7 +24,7 @@ public class PaymentPresenter {
 	
 	public static void createPayForSalesReceipt(String year, String month, String day, String sales, String employeeId)
 	{
-		Calendar date = new GregorianCalendar(Integer.parseInt(year),Integer.parseInt(month),Integer.parseInt(day));
+		Calendar date = new GregorianCalendar(Integer.parseInt(year),Integer.parseInt(month)-1,Integer.parseInt(day));
 		Transaction paymentTransaction = new AddSalesReceiptTransaction(date, Double.parseDouble(sales),Integer.parseInt(employeeId));
 		paymentTransaction.execute();
 	}
@@ -37,15 +37,9 @@ public class PaymentPresenter {
 		
 
 	}
-	
-	public static double getPayCheckFromPayDayTransaction(int employeeID)
+	public static PayCheck getPayCheckFromPayDayTransaction(String employeeId)
 	{
-		double Pay=0.0;					
-	    PayCheck payCheck = paydayTransaction.getPaycheck(employeeID);
-		if (payCheck!=null)			 
-		     Pay=payCheck.getNetPay();
-		return Pay;	
-	}
-	
+		return paydayTransaction.getPaycheck(Integer.parseInt(employeeId));
+	}	
 
 }
