@@ -6,6 +6,7 @@ import java.util.GregorianCalendar;
 import payrollcasestudy.entities.PayCheck;
 import payrollcasestudy.transactions.PaydayTransaction;
 import payrollcasestudy.transactions.Transaction;
+import payrollcasestudy.transactions.add.AddSalesReceiptTransaction;
 import payrollcasestudy.transactions.add.AddTimeCardTransaction;
 
 public class PaymentPresenter {
@@ -14,10 +15,17 @@ public class PaymentPresenter {
 	private static PaydayTransaction paydayTransaction;
 
 	
-	public static void createPayPerHour(String year, String month, String day, String hours, String employeeId)
+	public static void createPayForHour(String year, String month, String day, String hours, String employeeId)
 	{
 		Calendar date = new GregorianCalendar(Integer.parseInt(year),Integer.parseInt(month)-1,Integer.parseInt(day));
 		Transaction paymentTransaction = new AddTimeCardTransaction(date, Double.parseDouble(hours),Integer.parseInt(employeeId));
+		paymentTransaction.execute();
+	}
+	
+	public static void createPayForSalesReceipt(String year, String month, String day, String sales, String employeeId)
+	{
+		Calendar date = new GregorianCalendar(Integer.parseInt(year),Integer.parseInt(month),Integer.parseInt(day));
+		Transaction paymentTransaction = new AddSalesReceiptTransaction(date, Double.parseDouble(sales),Integer.parseInt(employeeId));
 		paymentTransaction.execute();
 	}
 	
@@ -25,7 +33,9 @@ public class PaymentPresenter {
 	{
 		Calendar date = new GregorianCalendar(Integer.parseInt(year),Integer.parseInt(month),Integer.parseInt(day));
 		Transaction paydayTransaction = new PaydayTransaction(date);
-		paydayTransaction.execute();		
+		paydayTransaction.execute();	
+		
+
 	}
 	
 	public static double getPayCheckFromPayDayTransaction(int employeeID)

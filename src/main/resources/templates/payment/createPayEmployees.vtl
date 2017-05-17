@@ -18,11 +18,22 @@
 			<div class="field inline">
 					<label>CI:</label>
 					$employee.getEmployeeId()
-			</div>			
+			</div>	
+				
 			<div class="field inline">
 					<label>Direccion:</label>
 					$employee.getAddress()
 			</div>
+         #if($employee.getClasificationPayment() == "Salario")
+   		 
+   		 	<div class="field inline">
+				<label>Salario:</label>
+				$employee.getPaymentClassification().getSalary()
+			</div>
+   		 
+   		 #end
+   		 
+	 #if($employee.getClasificationPayment() == "Hora")		
 			<div class="field inline">
 				<label>Salario Por Hora:</label>
 				$employee.getPaymentClassification().getHourlyRate()
@@ -50,7 +61,46 @@
    				    <input type="hidden" value="$employee.getEmployeeId()" name="employeeId">
        	    </div>   				
  			<button type="submit" class="ui teal fluid button"> Registrar Horas Trabajadas </button>
-   			</form>
+   		</form>
+   		 #end
+   		 
+   		 #if($employee.getClasificationPayment() == "Comision")
+   		  <div class="field inline">
+				<label>Salario:</label>
+				$employee.getPaymentClassification().getMonthlySalary()
+			</div>
+			<div class="field inline">
+				<label>Comision por Ventas:</label>
+				$employee.getPaymentClassification().getCommissionRate()
+			</div>
+				
+				
+       	<form class="ui form"  	method='post' action='/payComissioned'>
+       	
+       	    <div class="four fields">
+       	    <div class="field">
+   					<label>Día:</label>
+ 				    <input type="number" name="day" class="form-control" placeholder="Ingrese el Dia">
+   				</div>
+   				<div class="field">
+   					<label>Mes:</label>
+ 				    <input type="number" name="month" class="form-control" placeholder="Ingrese el mes">
+   				</div>
+   				<div class="field">
+   					<label for="">Año:</label>
+ 				    <input type="number" name="year" class="form-control" placeholder="Ingrese el Año">
+   				</div>
+   				<div class="field">
+   					<label for="">Total de Ventas:</label>
+ 				    <input type="number" name="sales" class="form-control" placeholder="Ingrese el total de ventas">
+   				</div>
+   				    <input type="hidden" value="$employee.getEmployeeId()" name="employeeId">
+       	    </div>   				
+ 			<button type="submit" class="ui teal fluid button"> Registrar Comision por Ventas </button>
+   		</form>
+   		 
+   		 #end
+   		 
        	</div>
        
  </body>

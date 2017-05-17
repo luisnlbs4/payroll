@@ -37,24 +37,42 @@ public class Main {
 		
 		
 		
-		get("/EmployeeAddHours/:id", (request, response) -> {			
+		get("/CreatePayEmployee/:id", (request, response) -> {			
 			Employee employee = EmployeePresenter.getEmployee(Integer.parseInt(request.params(":id")));
 			view.put("employee", employee);
-			  return new ModelAndView(view, "templates/payment/employeeAddhours.vtl");
+			  return new ModelAndView(view, "templates/payment/createPayEmployees.vtl");
 			}, new VelocityTemplateEngine());
 		
 		post("/payHourly", (request, response) -> {			 			
- 			PaymentPresenter.createPayPerHour(request.queryParams("year"),request.queryParams("month"),request.queryParams("day"), request.queryParams("hours"),request.queryParams("employeeId"));
+ 			PaymentPresenter.createPayForHour(request.queryParams("year"),request.queryParams("month"),request.queryParams("day"), request.queryParams("hours"),request.queryParams("employeeId"));
  			response.redirect("/Employees");
             return new ModelAndView(view, "templates/employee/indexEmployee.vtl");
          }, new VelocityTemplateEngine());
+		
+		 post("/payComissioned", (request, response) -> {			
+			PaymentPresenter.createPayForSalesReceipt(request.queryParams("year"),request.queryParams("month"),request.queryParams("day"), request.queryParams("sales"),request.queryParams("employeeId"));
+			response.redirect("/Employees");
+            return new ModelAndView(view, "templates/employee/indexEmployee.vtl");
+        }, new VelocityTemplateEngine());
 		
 		get("/payEmployee/show/:id", (request, response) -> {			
 			Employee employee = EmployeePresenter.getEmployee(Integer.parseInt(request.params(":id")));
 			view.put("employee", employee);
 			view.put("salary", PaymentPresenter.getPayCheckFromPayDayTransaction(Integer.parseInt(request.params(":id"))));
-            return new ModelAndView(view, "templates/payment/payEmployee.vtl");
+            return new ModelAndView(view, "templates/payment/viewPayEmployee.vtl");
         }, new VelocityTemplateEngine());
+		
+		
+		get("/payAll", (request, response) -> {	
+            return new ModelAndView(view, "templates/payment/payEmployees.vtl");
+            }, new VelocityTemplateEngine());
+		
+		post("/payAllTransaction", (request, response) -> {
+			PaymentPresenter.calculateAllPays(request.queryParams("year"),request.queryParams("month"),request.queryParams("day"));			
+			response.redirect("/Employees");
+            return new ModelAndView(view, "templates/employee/indexEmployee.vtl");
+        }, new VelocityTemplateEngine());
+		
 		
 
 	}

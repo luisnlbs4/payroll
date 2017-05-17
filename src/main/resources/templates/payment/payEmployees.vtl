@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ArquiSoft</title>
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.min.css" media="screen" title="no title" charset="utf-8">
+  	  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  	  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.min.js"></script>
+  </head>
+  <body style="background-color:#3F83A0">
+      <div class="ui segment basic">
+      <a class="ui red button"href="/Employees">Atras</a>
+    </div>
+  
+  	<div class="ui container segment">
+  			<h1>Pagar a todos los empleados</h1>  		
+  		
+  			<div class="row">
+  			<h2>Registro de fecha actual<h2><hr />
+  			</div>
+  			
+  		
+  			<form method='post' action='/payAllTransaction'>
+  			<div class="three fields">
+  				<div class="field">
+  					<label for="">Día:</label>
+				    <input type="number" name="day" class="form-control" id="" placeholder="1-31">
+  				</div>
+  				<div class="field">
+  					<label for="">Mes:</label>
+				    <input type="number" name="month" class="form-control" id="" placeholder="1-12">
+  				</div>
+  				<div class="field">
+  					<label for="">Año:</label>
+				    <input type="number" name="year" class="form-control" id="" placeholder="Ej: 2005">
+  				</div>
+			</div>
+			</br>
+			<button type="submit" class="btn btn-warning">  Pagar </button>
+  			</form>
+  		<br>
+  		
+  		
+  		<div class="row">
+	  		<a href="/employees" class=" ">
+		  		<h4>Atrás</h4></a>
+  		</div>
+  		
+  		</div>
+  		
+  		
+	  			
+	  	
+  	</div>
+   	
+   	
+   	    
+  </body>
+</html>

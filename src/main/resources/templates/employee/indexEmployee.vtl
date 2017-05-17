@@ -42,6 +42,8 @@
 			    <td>$empleado.getName().toString()</td>
 			    <td>$empleado.getAddress().toString()</td>
 			    <td>$empleado.getPaymentClassification().getSalary()</td>
+			    <td><a href="/CreatePayEmployee/$empleado.getEmployeeId().toString()" class="ui yellow button ">Ver detalle</a><td>
+			    
 			    
 			#end    
     </tr>
@@ -72,6 +74,8 @@
 			    <td>$empleado.getAddress().toString()</td>
 			    <td>$empleado.getPaymentClassification().getMonthlySalary()</td>
 			    <td>$empleado.getPaymentClassification().getCommissionRate()</td>
+			    <td><a href="/CreatePayEmployee/$empleado.getEmployeeId().toString()" class="ui yellow button ">Agregar Comision por Ventas</a><td>
+			    
 			#end    
     </tr>
 			#end
@@ -100,7 +104,7 @@
 			    <td>$empleado.getName().toString()</td>
 			    <td>$empleado.getAddress().toString()</td>
 			    <td>$empleado.getPaymentClassification().getHourlyRate()</td>
-			    <td><a href="/EmployeeAddHours/$empleado.getEmployeeId().toString()" class="ui yellow button ">Agregar Horas Trabajadas</a>
+			    <td><a href="/CreatePayEmployee/$empleado.getEmployeeId().toString()" class="ui yellow button ">Agregar Horas Trabajadas</a>
 			    <a href="/payEmployee/show/$empleado.getEmployeeId().toString()" class="ui blue button ">Ver Salario</a></td>
 			        
 			#end    
@@ -108,6 +112,8 @@
 			#end
   </tbody>
 </table>
+
+  <a href="/payAll" class="ui fluid teal button">Pagar a todos</a>
 
 </div>
 </div>
