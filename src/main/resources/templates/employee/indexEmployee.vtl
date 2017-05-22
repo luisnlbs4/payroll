@@ -37,7 +37,7 @@
         	#foreach ($empleado in $employees)
         	
     <tr>
-            #if($empleado.getClasificationPayment() == "Salario")
+             #if($empleado.getClasificationPayment() == "")
                 <td>$empleado.getEmployeeId().toString()</td>
 			    <td>$empleado.getName().toString()</td>
 			    <td>$empleado.getAddress().toString()</td>
@@ -45,7 +45,7 @@
 			    <td><a href="/CreatePayEmployee/$empleado.getEmployeeId().toString()" class="ui yellow button ">Ver detalle</a><td>
 			    
 			    
-			#end    
+			#end  
     </tr>
 			#end
   </tbody>

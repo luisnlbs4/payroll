@@ -1,7 +1,6 @@
 package payrollcasestudy.transactions.add;
 
 import payrollcasestudy.boundaries.PayrollDatabase;
-import payrollcasestudy.boundaries.Repository;
 import payrollcasestudy.entities.Employee;
 import payrollcasestudy.entities.paymentclassifications.PaymentClassification;
 import payrollcasestudy.entities.paymentmethods.HoldMethod;
@@ -24,7 +23,7 @@ public abstract class AddEmployeeTransaction implements Transaction {
         this.employeeAddress = employeeAddress;
     }
 
-    public void execute(Repository repository) {
+    public void execute() {
         PaymentClassification paymentClassification = getPaymentClassification();
         PaymentSchedule paymentSchedule = getPaymentSchedule();
         PaymentMethod paymentMethod = new HoldMethod();

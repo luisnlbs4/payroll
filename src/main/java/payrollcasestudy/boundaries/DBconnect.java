@@ -15,12 +15,9 @@ public class DBconnect implements Repository{
 	public DBconnect(){
 		
 		try{
-			
 			Class.forName("com.mysql.jdbc.Driver");
 			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/arquidb","root","");
-			statement = connection.createStatement();
-			
-			
+			statement = connection.createStatement();	
 		}
 		catch(Exception exception){
 		   System.out.println("Error:"+exception);
@@ -62,9 +59,17 @@ public class DBconnect implements Repository{
 	     }
 
 	@Override
-	public Employee getEmployee(int employeeId) {
-		// TODO Auto-generated method stub
-		return null;
+	public Employee getEmployee(int employeeId) {	 	
+		Employee employee = new Employee();
+        try{
+			String 	query = "SELECT * FROM employee WHERE employee id ="+employeeId;
+	        result = statement.executeQuery(query);
+			employee = new Employee(Integer.parseInt(result.getString("id")),result.getString("name"),result.getString("adress"));
+			return employee;
+		}catch (Exception ex){
+			System.out.println("Error:"+ex);
+			return employee;
+		}
 	}
 	@Override
 	public void addEmployee(int employeeId, Employee employee) {
