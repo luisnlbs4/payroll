@@ -15,6 +15,6 @@ public interface Repository {
 	    public void addUnionMember(int memberId, Employee employee);
 	    public void deleteUnionMember(int memberId);
 	    public Set<Integer> getAllEmployeeIds() ;
-	    public ArrayList<Employee> getAllEmployees(); 
+	    public List<Employee> getAllEmployees(); 
 
 }

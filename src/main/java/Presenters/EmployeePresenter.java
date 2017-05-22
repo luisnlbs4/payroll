@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 import payrollcasestudy.entities.Employee;
+import payrollcasestudy.boundaries.DBconnect;
 import payrollcasestudy.boundaries.PayrollDatabase;
 import payrollcasestudy.transactions.Transaction;
 import payrollcasestudy.transactions.add.AddCommissionedEmployeeTransaction;
@@ -57,8 +58,10 @@ public class EmployeePresenter {
 	}
 
 
-	public static List<Employee> Devolver_empleados() {		
-		return PayrollDatabase.globalPayrollDatabase.getAllEmployees();
+	public static List<Employee> Devolver_empleados() {
+		DBconnect db=new DBconnect();
+		return db.getAllEmployees();
+		//return PayrollDatabase.globalPayrollDatabase.getAllEmployees();
 	}
 
 	public static Employee getEmployee(int employe_ci) {
