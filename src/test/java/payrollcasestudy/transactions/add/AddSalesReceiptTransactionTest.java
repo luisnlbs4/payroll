@@ -3,6 +3,8 @@ package payrollcasestudy.transactions.add;
 import org.junit.Rule;
 import org.junit.Test;
 import payrollcasestudy.DatabaseResource;
+import payrollcasestudy.boundaries.DBconnect;
+import payrollcasestudy.boundaries.Repository;
 import payrollcasestudy.entities.Employee;
 import payrollcasestudy.entities.SalesReceipt;
 import payrollcasestudy.entities.paymentclassifications.CommissionedPaymentClassification;
@@ -18,7 +20,8 @@ import static org.junit.Assert.assertThat;
 import static payrollcasestudy.TestConstants.*;
 
 public class AddSalesReceiptTransactionTest {
-
+	
+    Repository repository = new DBconnect();
     @Rule
     public DatabaseResource database = new DatabaseResource();
 

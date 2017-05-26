@@ -3,6 +3,7 @@ package payrollcasestudy.transactions.add;
 import java.util.Calendar;
 
 import payrollcasestudy.boundaries.PayrollDatabase;
+import payrollcasestudy.boundaries.Repository;
 import payrollcasestudy.entities.Employee;
 import payrollcasestudy.entities.affiliations.UnionAffiliation;
 import payrollcasestudy.transactions.Transaction;
@@ -18,7 +19,7 @@ public class AddServiceChargeTransaction implements Transaction {
 		this.amount = d;
 	}
 
-	public void execute() {
+	public void execute(Repository repository) {
 		// TODO Auto-generated method stub
 		Employee unionMember = PayrollDatabase.globalPayrollDatabase.getUnionMember(memberId);
 		if(unionMember!=null){

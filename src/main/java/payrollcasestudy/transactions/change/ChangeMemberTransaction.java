@@ -2,6 +2,7 @@ package payrollcasestudy.transactions.change;
 
 import payrollcasestudy.DatabaseResource;
 import payrollcasestudy.boundaries.PayrollDatabase;
+import payrollcasestudy.boundaries.Repository;
 import payrollcasestudy.entities.Employee;
 import payrollcasestudy.entities.affiliations.UnionAffiliation;
 import payrollcasestudy.transactions.Transaction;
@@ -18,7 +19,7 @@ public class ChangeMemberTransaction implements Transaction {
 		this.dues=dues;
 	}
 
-	public void execute() {
+	public void execute(Repository repository) {
 		Employee employee = database.getEmployee(employeeId);
 		UnionAffiliation unionAffiliation = new UnionAffiliation(memberId,dues);
 	    employee.setUnionAffiliation(unionAffiliation);	

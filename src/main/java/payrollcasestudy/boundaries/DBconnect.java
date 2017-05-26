@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import payrollcasestudy.entities.Employee;
+import payrollcasestudy.entities.paymentclassifications.CommissionedPaymentClassification;
+import payrollcasestudy.entities.paymentclassifications.HourlyPaymentClassification;
+import payrollcasestudy.entities.paymentclassifications.SalariedClassification;
 
 public class DBconnect implements Repository{
 	
@@ -23,23 +26,7 @@ public class DBconnect implements Repository{
 		   System.out.println("Error:"+exception);
 		}
 	}
-	/*public void getemployees(){
-      try{
-		    String 	query = "select * from employee";
-		    result = statement.executeQuery(query);
-		    System.out.println("Records from database");
-		    while(result.next()){
-		    	String name= result.getString("name");
-		    	String id = result.getString("id");
-		    	String adress = result.getString("adress");
-		    	System.out.println("Name: "+name+"adress"+adress+"id"+id);
-		    }
-		    
-		}
-		catch(Exception ex){
-		   System.out.println("Error:"+ex);
-		}
-	}*/
+	
 	@Override
 	 	public  List<Employee> getAllEmployees()
 	     {
@@ -48,7 +35,7 @@ public class DBconnect implements Repository{
 	 			String 	query = "SELECT * FROM employee";
 			    result = statement.executeQuery(query);
 	 			while(result.next()){
-	 				Employee employee = new Employee(Integer.parseInt(result.getString("id")),result.getString("name"),result.getString("adress"));
+	 				Employee employee = new Employee(Integer.parseInt(result.getString("id")),result.getString("name"),result.getString("address"));
 	 				employees.add(employee);
 	 			}
 	 			return employees;
@@ -64,7 +51,7 @@ public class DBconnect implements Repository{
         try{
 			String 	query = "SELECT * FROM employee WHERE employee id ="+employeeId;
 	        result = statement.executeQuery(query);
-			employee = new Employee(Integer.parseInt(result.getString("id")),result.getString("name"),result.getString("adress"));
+			employee = new Employee(Integer.parseInt(result.getString("id")),result.getString("name"),result.getString("adsress"));
 			return employee;
 		}catch (Exception ex){
 			System.out.println("Error:"+ex);
@@ -74,8 +61,84 @@ public class DBconnect implements Repository{
 	@Override
 	public void addEmployee(int employeeId, Employee employee) {
 		// TODO Auto-generated method stub
-		
+		int result=0;
+		try{
+			if(employee.getClasificationPayment() == "Hora")			{
+				result = createEmployeeHourlyPaymentClassification(employeeId,employee);
+			}else if(employee.getClasificationPayment() == "Comision"){
+				result = createEmployeeCommissionedPaymentClassification(employeeId,employee);
+			}else if(employee.getClasificationPayment() == "Salario"){
+				result = createEmployeeSalariedClassification(employeeId,employee);
+			}			
+			System.out.println("Creo un nuevo empleado");
+		}catch (Exception e){
+			System.out.println("Me mataste");
+			System.err.println(e);
+		}
 	}
+	
+	
+	public int createEmployeeCommissionedPaymentClassification(int employeeId, Employee employee)
+    {
+		int result=0;
+		CommissionedPaymentClassification commissionPayment =  (CommissionedPaymentClassification) employee.getPaymentClassification();
+		try{
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/arquidb","root","");
+			String insertEmployee_query = "INSERT INTO employee (id,name,address,type) "
+ 					+ "VALUES ('"+employee.getEmployeeId()+"', '"+employee.getName()+"', '"+employee.getAddress()+"', 'commissioned')";
+			String query_classification = "INSERT INTO commissioned (id, commission, salary)"
+					+ "VALUES ('"+employeeId+"', '"+commissionPayment.getCommissionRate()+"', '"+commissionPayment.getMonthlySalary()+"')";
+			Statement statement = connection.createStatement();
+			result = statement.executeUpdate(insertEmployee_query);
+			result = statement.executeUpdate(query_classification);
+		}catch (Exception e){
+			System.err.println(e);
+		}
+		return result;
+    }
+	int createEmployeeHourlyPaymentClassification(int employeeId, Employee employee) {
+		// TODO Auto-generated method stub
+		 		int resultaddEmployee=0;
+		 		HourlyPaymentClassification hourlyClassification =  (HourlyPaymentClassification) employee.getPaymentClassification(); 
+		 		try{
+					connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/arquidb","root","");
+		 			String insertEmployee_query = "INSERT INTO employee (id,name,address,type) "
+		 					+ "VALUES ('"+employee.getEmployeeId()+"', '"+employee.getName()+"', '"+employee.getAddress()+"', 'hourly')";
+		 			String insertClassification_query = "INSERT INTO hourly (id,hourlyRate) "
+		 					+ "VALUES ('"+employee.getEmployeeId()+"', '"+hourlyClassification.getHourlyRate()+"')";
+		 			Statement statement = connection.createStatement();
+		 			resultaddEmployee = statement.executeUpdate(insertEmployee_query);
+		 			resultaddEmployee = statement.executeUpdate(insertClassification_query);
+					System.out.println("Empleado por hora creado satisfactoriamente.");
+		 		}catch (Exception error){
+		 			System.err.println(error);
+		 		}
+		 		return resultaddEmployee;
+	}
+	
+	public int createEmployeeSalariedClassification(int employeeId, Employee employee)
+    {
+		int result=0;
+		SalariedClassification salariedPayment =  (SalariedClassification) employee.getPaymentClassification();
+		try{
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/arquidb","root","");
+			String insertEmployee_query = "INSERT INTO employee (id,name,address,type) "
+ 					+ "VALUES ('"+employee.getEmployeeId()+"', '"+employee.getName()+"', '"+employee.getAddress()+"', 'salaried')";
+			String query_classification = "INSERT INTO salaried (id, salary) "
+					+ "VALUES ('"+employeeId+"', '"+salariedPayment.getSalary()+"')";
+			
+			Statement statement = connection.createStatement();
+			result = statement.executeUpdate(insertEmployee_query);
+			result = statement.executeUpdate(query_classification);
+		}catch (Exception e){
+			System.err.println(e);
+		}
+		return result;
+    }
+	
+	
+	
+	
 	@Override
 	public void clear() {
 		// TODO Auto-generated method stub
