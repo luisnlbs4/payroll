@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import payrollcasestudy.boundaries.GsonApi;
 import payrollcasestudy.entities.Employee;
 import payrollcasestudy.entities.PayCheck;
 import Presenters.EmployeePresenter;
@@ -77,6 +78,11 @@ public class Main {
 			response.redirect("/Employees");
             return new ModelAndView(view, "templates/employee/indexEmployee.vtl");
         }, new VelocityTemplateEngine());
+		
+		
+		
+		get("/api/employees", (req, res) -> EmployeePresenter.Devolver_empleados(), GsonApi.json());
+
 		
 		
 
