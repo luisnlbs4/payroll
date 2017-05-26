@@ -54,7 +54,7 @@ public class DBconnect implements Repository{
 		Employee employee=null;
 		result=null;
 		try{
-			    result = returntypeEmployee(employeeId);
+			    result = returnEmployeeAllAtributes(employeeId);
 				employee = new Employee(Integer.parseInt(result.getString("id")),result.getString("name"),result.getString("address"));				
 				if(result.getString("type").toString().equals("hourly")){
 					HourlyPaymentClassification hourlyClassification =  new HourlyPaymentClassification(Double.parseDouble(result.getString("hourlyRate")));
@@ -82,19 +82,23 @@ public class DBconnect implements Repository{
 		return employee;
 	}
 	
-	private ResultSet returntypeEmployee(int id){
-		ResultSet employee = searchColumnInTable(id,"employee");
+	private ResultSet returnEmployeeAllAtributes(int id){
 		ResultSet paymentClassification=null;
 		try{
-			while(employee.next()){
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/arquidb","root","");
+			String query = "SELECT * FROM employee WHERE employee.id ='"+id+"'";
+			statement = connection.createStatement();	
+			result = statement.executeQuery(query);
+			
+			while(result.next()){
 				
-				if(employee.getString("type").toString().equals("hourly")){
+				if(result.getString("type").toString().equals("hourly")){
 					paymentClassification = joinTablesGetTypeemployee(id,"hourly");
 				}
-				if(employee.getString("type").toString().equals("commissioned")){
+				if(result.getString("type").toString().equals("commissioned")){
 					paymentClassification = joinTablesGetTypeemployee(id,"commissioned");
 				}
-				if(employee.getString("type").toString().equals("salaried")){
+				if(result.getString("type").toString().equals("salaried")){
 					paymentClassification = joinTablesGetTypeemployee(id,"salaried");
 				}
 				return paymentClassification;
@@ -104,21 +108,7 @@ public class DBconnect implements Repository{
 		}
 		return paymentClassification;
 	}
-	public ResultSet searchColumnInTable(int id,String table)
-    {
-		ResultSet result=null;
-		try{
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/arquidb","root","");
-			String query = "SELECT * FROM "+table+" WHERE "+table+".id ='"+id+"'";
-			statement = connection.createStatement();	
-			result = statement.executeQuery(query);
- 		}catch (Exception exception){
-			System.err.println(exception);
-			
-		}
-		return result;
-    }
-	
+
 	public ResultSet joinTablesGetTypeemployee(int employeeId,String paymentClassification)
     {
 		ResultSet result=null;
