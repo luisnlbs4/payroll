@@ -8,6 +8,9 @@ import payrollcasestudy.entities.Employee;
 import payrollcasestudy.entities.paymentclassifications.CommissionedPaymentClassification;
 import payrollcasestudy.entities.paymentclassifications.HourlyPaymentClassification;
 import payrollcasestudy.entities.paymentclassifications.SalariedClassification;
+import payrollcasestudy.entities.paymentschedule.BiweeklyPaymentSchedule;
+import payrollcasestudy.entities.paymentschedule.MonthlyPaymentSchedule;
+import payrollcasestudy.entities.paymentschedule.WeeklyPaymentSchedule;
 
 public class DBconnect implements Repository{
 	
@@ -33,9 +36,9 @@ public class DBconnect implements Repository{
 		        List<Employee> employees = new ArrayList<>();	 	
 		        try{
 	 			String 	query = "SELECT * FROM employee";
-			    result = statement.executeQuery(query);
+	 			ResultSet result = statement.executeQuery(query);
 	 			while(result.next()){
-	 				Employee employee = new Employee(Integer.parseInt(result.getString("id")),result.getString("name"),result.getString("address"));
+	 				Employee employee = getEmployee(Integer.parseInt(result.getString("id")));
 	 				employees.add(employee);
 	 			}
 	 			return employees;
@@ -44,24 +47,99 @@ public class DBconnect implements Repository{
 	 			return employees;
 	 		}
 	     }
-
-	@Override
-	public Employee getEmployee(int employeeId) {	 	
-		Employee employee = new Employee();
-        try{
-			String 	query = "SELECT * FROM employee WHERE employee id ="+employeeId;
-	        result = statement.executeQuery(query);
-			employee = new Employee(Integer.parseInt(result.getString("id")),result.getString("name"),result.getString("adsress"));
-			return employee;
-		}catch (Exception ex){
-			System.out.println("Error:"+ex);
-			return employee;
+	
+	
+	@Override	
+	public Employee getEmployee(int employeeId) {
+		Employee employee=null;
+		result=null;
+		try{
+			    result = returntypeEmployee(employeeId);
+				employee = new Employee(Integer.parseInt(result.getString("id")),result.getString("name"),result.getString("address"));				
+				if(result.getString("type").toString().equals("hourly")){
+					HourlyPaymentClassification hourlyClassification =  new HourlyPaymentClassification(Double.parseDouble(result.getString("hourlyRate")));
+					WeeklyPaymentSchedule weeklyPayment = new WeeklyPaymentSchedule();
+					employee.setPaymentClassification(hourlyClassification);
+					employee.setPaymentSchedule(weeklyPayment);
+					
+				}
+				if(result.getString("type").toString().equals("commissioned")){
+					CommissionedPaymentClassification commissionClassification =  new CommissionedPaymentClassification(Double.parseDouble(result.getString("commission")),result.getDouble("salary"));
+					BiweeklyPaymentSchedule biweeklyPayment = new BiweeklyPaymentSchedule();
+					employee.setPaymentClassification(commissionClassification);
+					employee.setPaymentSchedule(biweeklyPayment);
+				}
+				if(result.getString("type").toString().equals("salaried")){
+					SalariedClassification salaryClassification =  new SalariedClassification(result.getDouble("salary"));
+					MonthlyPaymentSchedule monthlyPayment = new MonthlyPaymentSchedule();
+					employee.setPaymentClassification(salaryClassification);
+					employee.setPaymentSchedule(monthlyPayment);
+				}
+			//}
+		}catch (Exception exception){
+			System.err.println(exception);
 		}
+		return employee;
 	}
+	
+	private ResultSet returntypeEmployee(int id){
+		ResultSet employee = searchColumnInTable(id,"employee");
+		ResultSet paymentClassification=null;
+		try{
+			while(employee.next()){
+				
+				if(employee.getString("type").toString().equals("hourly")){
+					paymentClassification = joinTablesGetTypeemployee(id,"hourly");
+				}
+				if(employee.getString("type").toString().equals("commissioned")){
+					paymentClassification = joinTablesGetTypeemployee(id,"commissioned");
+				}
+				if(employee.getString("type").toString().equals("salaried")){
+					paymentClassification = joinTablesGetTypeemployee(id,"salaried");
+				}
+				return paymentClassification;
+			}
+		}catch (Exception exception){
+			System.err.println(exception);
+		}
+		return paymentClassification;
+	}
+	public ResultSet searchColumnInTable(int id,String table)
+    {
+		ResultSet result=null;
+		try{
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/arquidb","root","");
+			String query = "SELECT * FROM "+table+" WHERE "+table+".id ='"+id+"'";
+			statement = connection.createStatement();	
+			result = statement.executeQuery(query);
+ 		}catch (Exception exception){
+			System.err.println(exception);
+			
+		}
+		return result;
+    }
+	
+	public ResultSet joinTablesGetTypeemployee(int employeeId,String paymentClassification)
+    {
+		ResultSet result=null;
+		try{
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/arquidb","root","");
+			String query = "SELECT * FROM "+paymentClassification+" "
+					+ "INNER JOIN employee ON "+paymentClassification+".id=employee.id "
+					+ "WHERE "+paymentClassification+".id='"+employeeId+"'";
+			Statement statement = connection.createStatement();
+			result = statement.executeQuery(query);
+			while(result.next()){
+				return result;
+			}
+		}catch (Exception exception){
+			System.err.println(exception);	
+		}
+		return result;
+    }
 	@Override
 	public void addEmployee(int employeeId, Employee employee) {
-		// TODO Auto-generated method stub
-		int result=0;
+		int result;
 		try{
 			if(employee.getClasificationPayment() == "Hora")			{
 				result = createEmployeeHourlyPaymentClassification(employeeId,employee);
@@ -70,10 +148,8 @@ public class DBconnect implements Repository{
 			}else if(employee.getClasificationPayment() == "Salario"){
 				result = createEmployeeSalariedClassification(employeeId,employee);
 			}			
-			System.out.println("Creo un nuevo empleado");
-		}catch (Exception e){
-			System.out.println("Me mataste");
-			System.err.println(e);
+		}catch (Exception exception){
+			System.err.println(exception);
 		}
 	}
 	

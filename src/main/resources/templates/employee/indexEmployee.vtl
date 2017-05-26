@@ -37,8 +37,7 @@
         	#foreach ($empleado in $employees)
         	
     <tr>
-             #if($empleado.getClasificationPayment() == "")
-             <!-- Salario -->
+             #if($empleado.getClasificationPayment() == "Salario")
                 <td>$empleado.getEmployeeId().toString()</td>
 			    <td>$empleado.getName().toString()</td>
 			    <td>$empleado.getAddress().toString()</td>
