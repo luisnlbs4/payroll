@@ -67,7 +67,7 @@ public class EmployeePresenter {
 	}
 
 	public static Employee getEmployee(int employe_ci) {
-		return PayrollDatabase.globalPayrollDatabase.getEmployee(employe_ci);
+		return repository.getEmployee(employe_ci);
 	}
 
 

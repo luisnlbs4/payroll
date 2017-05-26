@@ -2,6 +2,7 @@ package payrollcasestudy.boundaries;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import payrollcasestudy.entities.Employee;
@@ -230,10 +231,24 @@ public class DBconnect implements Repository{
 		// TODO Auto-generated method stub
 		
 	}
+	
 	@Override
 	public Set<Integer> getAllEmployeeIds() {
-		// TODO Auto-generated method stub
-		return null;
+		Set<Integer> employees = new HashSet<Integer>();
+		ResultSet result=null;
+		try{
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/arquidb","root","");
+			String query = "SELECT * FROM employee";
+			Statement statement = connection.createStatement();
+			result = statement.executeQuery(query);
+			while(result.next()){
+				employees.add(result.getInt("id"));
+			}
+			return employees;
+		}catch (Exception exception){
+			System.err.println(exception);
+			return null;
+		}
 	}
 	
 

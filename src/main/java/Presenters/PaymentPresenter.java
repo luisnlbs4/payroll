@@ -12,9 +12,7 @@ import payrollcasestudy.transactions.add.AddSalesReceiptTransaction;
 import payrollcasestudy.transactions.add.AddTimeCardTransaction;
 
 public class PaymentPresenter {
-	
-	private static Transaction paymentTransaction;
-	private static PaydayTransaction paydayTransaction;
+		private static PaydayTransaction paydayTransaction;
 	private static Repository repository = new DBconnect();
 
 	
@@ -34,7 +32,7 @@ public class PaymentPresenter {
 	
 	public static void calculateAllPays(String year, String month, String day)
 	{
-		Calendar date = new GregorianCalendar(Integer.parseInt(year),Integer.parseInt(month),Integer.parseInt(day));
+		Calendar date = new GregorianCalendar(Integer.parseInt(year),Integer.parseInt(month)-1,Integer.parseInt(day));
 		Transaction paydayTransaction = new PaydayTransaction(date);
 		paydayTransaction.execute(repository);	
 	}

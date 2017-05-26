@@ -59,12 +59,12 @@ public class Main {
 		get("/payEmployee/show/:id", (request, response) -> {	
 			
 			Employee employee;
-			//PayCheck payCheck;
+			PayCheck payCheck;
 			employee = EmployeePresenter.getEmployee(Integer.parseInt(request.params(":id")));
-			//payCheck = PaymentPresenter.getPayCheckFromPayDayTransaction((request.params(":id")));
-			//double total = payCheck.getNetPay();
+			payCheck = PaymentPresenter.getPayCheckFromPayDayTransaction((request.params(":id")));
+			double total = payCheck.getNetPay();
 			view.put("employee", employee);
-			//view.put("salary", total);
+			view.put("salary", total);
             return new ModelAndView(view, "templates/payment/viewPayEmployee.vtl");
         }, new VelocityTemplateEngine());
 		
