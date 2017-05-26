@@ -81,7 +81,7 @@ public class Main {
 		
 		
 		
-		get("/api/employees", (req, res) -> EmployeePresenter.Devolver_empleados(), GsonApi.json());
+		get("/json/employees", (req, res) -> EmployeePresenter.Devolver_empleados(), GsonApi.json());
 
 		
 		

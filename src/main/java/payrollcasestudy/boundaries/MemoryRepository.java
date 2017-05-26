@@ -1,64 +1,65 @@
 package payrollcasestudy.boundaries;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import payrollcasestudy.entities.Employee;
 
 public class MemoryRepository implements Repository {
 
-	@Override
-	public Employee getEmployee(int employeeId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	 public static MemoryRepository globalPayrollDatabase = new MemoryRepository();
 
-	@Override
-	public void addEmployee(int employeeId, Employee employee) {
-		// TODO Auto-generated method stub
+	    private Map<Integer, Employee> employees = new HashMap<Integer, Employee>();
+	    public Map<Integer, Employee> unionMembers = new HashMap<Integer, Employee>();
 
-	}
 
-	@Override
-	public void clear() {
-		// TODO Auto-generated method stub
+	    public Employee getEmployee(int employeeId) {
+	        return employees.get(employeeId);
+	    }
 
-	}
+	    public void addEmployee(int employeeId, Employee employee) {
+	        employees.put(employeeId, employee);
+	    }
 
-	@Override
-	public void deleteEmployee(int employeeId) {
-		// TODO Auto-generated method stub
+	    public void clear(){
+	        employees.clear();
+	        unionMembers.clear();
+	    }
 
-	}
+	    public void deleteEmployee(int employeeId) {
+	        employees.put(employeeId, null);
+	    }
 
-	@Override
-	public Employee getUnionMember(int memberId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	    public Employee getUnionMember(int memberId) {
+	        return unionMembers.get(memberId);
+	    }
 
-	@Override
-	public void addUnionMember(int memberId, Employee employee) {
-		// TODO Auto-generated method stub
+	    public void addUnionMember(int memberId, Employee employee) {
+	        unionMembers.put(memberId, employee);
+	    }
 
-	}
+	    public void deleteUnionMember(int memberId) {
+	        unionMembers.remove(memberId);
+	    }
 
-	@Override
-	public void deleteUnionMember(int memberId) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public Set<Integer> getAllEmployeeIds() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<Employee> getAllEmployees() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	    public Set<Integer> getAllEmployeeIds() {
+	        return employees.keySet();
+	    }
+	    
+	    public ArrayList<Employee> getAllEmployees() {    	
+			ArrayList<Employee> Employees = new ArrayList<>();
+			Employee employee;
+			Set<Integer> employeeIds= getAllEmployeeIds();
+			List<Integer> employeeIdsList = new ArrayList<>(employeeIds);
+			for(int i = 0; i < employeeIdsList.size();i++ )
+			{
+				employee = getEmployee(employeeIdsList.get(i));
+				Employees.add(employee);
+			}
+			return Employees;
+		}
 
 }

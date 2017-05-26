@@ -1,5 +1,6 @@
 package payrollcasestudy.transactions.change;
 
+import payrollcasestudy.boundaries.Repository;
 import payrollcasestudy.entities.Employee;
 import payrollcasestudy.entities.paymentclassifications.PaymentClassification;
 import payrollcasestudy.entities.paymentschedule.PaymentSchedule;
@@ -11,7 +12,7 @@ public abstract class ChangeClassificationTransaction extends ChangeEmployeeTran
     }
 
     @Override
-    public void changeEmployee(Employee employee) {
+    public void changeEmployee(Employee employee, Repository repository) {
         PaymentClassification classification = getNewPaymentClassification();
         employee.setPaymentClassification(classification);
         PaymentSchedule schedule = getNewPaymentSchedule();

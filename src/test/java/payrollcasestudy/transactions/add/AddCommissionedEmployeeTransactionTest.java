@@ -3,6 +3,8 @@
 import org.junit.Rule;
 import org.junit.Test;
 import payrollcasestudy.DatabaseResource;
+import payrollcasestudy.boundaries.MemoryRepository;
+import payrollcasestudy.boundaries.Repository;
 import payrollcasestudy.entities.Employee;
 import payrollcasestudy.entities.paymentclassifications.CommissionedPaymentClassification;
 import payrollcasestudy.entities.paymentclassifications.PaymentClassification;
@@ -21,14 +23,17 @@ public class AddCommissionedEmployeeTransactionTest {
 
     @Rule
     public DatabaseResource database = new DatabaseResource();
+    
+	private static final Repository repository = new MemoryRepository();
+
 
     @Test
     public void testAddCommissionedEmployee(){
         int employeeId = 1;
         Transaction addEmployeeTransaction =
                 new AddCommissionedEmployeeTransaction(employeeId, "Michael", "Home", 200.0 , 20.0);
-        addEmployeeTransaction.execute();
-        Employee employee = database.getInstance().getEmployee(employeeId);
+        addEmployeeTransaction.execute(repository);
+        Employee employee = repository.getEmployee(employeeId);
         assertThat(employee.getName(), is("Michael"));
 
         PaymentClassification paymentClassification = employee.getPaymentClassification();

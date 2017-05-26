@@ -1,5 +1,6 @@
 package payrollcasestudy.transactions.change;
 
+import payrollcasestudy.boundaries.Repository;
 import payrollcasestudy.entities.Employee;
 import payrollcasestudy.entities.affiliations.UnionAffiliation;
 
@@ -10,7 +11,7 @@ public abstract class ChangeAffiliationTransaction extends ChangeEmployeeTransac
     }
 
     @Override
-    public void changeEmployee(Employee employee) {
+    public void changeEmployee(Employee employee,Repository repository) {
         recordMembership(employee);
         employee.setUnionAffiliation(getAffiliation());
     }

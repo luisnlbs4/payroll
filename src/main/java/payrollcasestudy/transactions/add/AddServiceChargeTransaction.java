@@ -21,7 +21,7 @@ public class AddServiceChargeTransaction implements Transaction {
 
 	public void execute(Repository repository) {
 		// TODO Auto-generated method stub
-		Employee unionMember = PayrollDatabase.globalPayrollDatabase.getUnionMember(memberId);
+		Employee unionMember = repository.getUnionMember(memberId);
 		if(unionMember!=null){
 			UnionAffiliation unionAffiliation = unionMember.getUnionAffiliation();
 			unionAffiliation.addServiceCharge(date, amount);

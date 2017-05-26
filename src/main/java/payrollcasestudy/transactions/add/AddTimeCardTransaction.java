@@ -23,7 +23,7 @@ public class AddTimeCardTransaction implements Transaction {
     }
 
     public void execute(Repository repository) {
-        Employee employee = PayrollDatabase.globalPayrollDatabase.getEmployee(employeeId);
+        Employee employee = repository.getEmployee(employeeId);
         if (employee != null){
             PaymentClassification paymentClassification = employee.getPaymentClassification();
             if (paymentClassification instanceof HourlyPaymentClassification){

@@ -3,6 +3,8 @@ package payrollcasestudy.transactions.change;
 import org.junit.Rule;
 import org.junit.Test;
 import payrollcasestudy.DatabaseResource;
+import payrollcasestudy.boundaries.MemoryRepository;
+import payrollcasestudy.boundaries.Repository;
 import payrollcasestudy.entities.Employee;
 import payrollcasestudy.entities.paymentclassifications.SalariedClassification;
 import payrollcasestudy.entities.paymentschedule.MonthlyPaymentSchedule;
@@ -19,18 +21,19 @@ public class ChangeSalariedTransactionTest {
 
     @Rule
     public DatabaseResource databaseResource = new DatabaseResource();
+	private static final Repository repository = new MemoryRepository();
 
     @Test
     public void testChangeHourlyTransaction() throws Exception {
         int employeeId = 3;
         AddEmployeeTransaction addEmployeeTransaction =
                 new AddCommissionedEmployeeTransaction(employeeId, "Lance", "Home", 2500, 3.2);
-        addEmployeeTransaction.execute();
+        addEmployeeTransaction.execute(repository);
 
         ChangeSalariedTransaction changeSalariedTransaction = new ChangeSalariedTransaction(employeeId, 3000.0);
-        changeSalariedTransaction.execute();
+        changeSalariedTransaction.execute(repository);
 
-        Employee employee = databaseResource.getInstance().getEmployee(employeeId);
+        Employee employee = repository.getEmployee(employeeId);
         assertThat(employee.getPaymentClassification(), is(instanceOf(SalariedClassification.class)));
         SalariedClassification paymentClassification =
                 (SalariedClassification) employee.getPaymentClassification();
