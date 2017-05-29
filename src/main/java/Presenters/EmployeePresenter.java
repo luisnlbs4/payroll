@@ -15,8 +15,11 @@ import payrollcasestudy.transactions.add.AddSalariedEmployeeTransaction;
 
 public class EmployeePresenter {
 	
-	private static Repository repository = new DBconnect();
-	
+	private static Repository repository;
+	public EmployeePresenter(Repository repository2) {
+			this.repository = repository2;
+	}
+
 	public static void registrar_empleado(String tipo, String nombre_empleado,String direccion_empleado,String ci_employee, String amount,String comision){
 		int tipoInt = Integer.parseInt(tipo);
 		if(tipoInt == 2){
@@ -59,13 +62,11 @@ public class EmployeePresenter {
 	                new AddHourlyEmployeeTransaction(ci, nombre_empleado, direccion_empleado,amountt);
 	        addEmployeeTransaction.execute(repository);
 	}
-
-
-	public static List<Employee> Devolver_empleados() {
+	
+    public static List<Employee> Devolver_empleados() {
 		return repository.getAllEmployees();
-		//return PayrollDatabase.globalPayrollDatabase.getAllEmployees();
 	}
-
+    
 	public static Employee getEmployee(int employe_ci) {
 		return repository.getEmployee(employe_ci);
 	}

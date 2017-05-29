@@ -36,6 +36,7 @@ public class DBconnect implements Repository{
 	     {
 		        List<Employee> employees = new ArrayList<>();	 	
 		        try{
+				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/arquidb","root","");
 	 			String 	query = "SELECT * FROM employee";
 	 			ResultSet result = statement.executeQuery(query);
 	 			while(result.next()){
@@ -53,7 +54,7 @@ public class DBconnect implements Repository{
 	@Override	
 	public Employee getEmployee(int employeeId) {
 		Employee employee=null;
-		result=null;
+		ResultSet result=null;
 		try{
 			    result = returnEmployeeAllAtributes(employeeId);
 				employee = new Employee(Integer.parseInt(result.getString("id")),result.getString("name"),result.getString("address"));				
@@ -238,7 +239,7 @@ public class DBconnect implements Repository{
 		ResultSet result=null;
 		try{
 			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/arquidb","root","");
-			String query = "SELECT * FROM employee";
+			String query = "SELECT id FROM employee";
 			Statement statement = connection.createStatement();
 			result = statement.executeQuery(query);
 			while(result.next()){
@@ -247,7 +248,7 @@ public class DBconnect implements Repository{
 			return employees;
 		}catch (Exception exception){
 			System.err.println(exception);
-			return null;
+			return employees;
 		}
 	}
 	
