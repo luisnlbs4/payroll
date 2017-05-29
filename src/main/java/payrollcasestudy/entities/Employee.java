@@ -1,6 +1,5 @@
 package payrollcasestudy.entities;
 
-import payrollcasestudy.boundaries.PayrollDatabase;
 import payrollcasestudy.entities.affiliations.UnionAffiliation;
 import payrollcasestudy.entities.paymentclassifications.CommissionedPaymentClassification;
 import payrollcasestudy.entities.paymentclassifications.HourlyPaymentClassification;
@@ -99,15 +98,8 @@ public class Employee {
 
 	public UnionAffiliation getUnionAffiliation() {
 		return unionAffiliation;
-	}
-
-	public void safeEmployeeInDB(int id, Employee employee){
-		PayrollDatabase.globalPayrollDatabase.addEmployee(id, employee);
-	}
+	}	
 	
-	public static Employee getEmployeeFromDB(int employeeId){
-		return PayrollDatabase.globalPayrollDatabase.getEmployee(employeeId);
-	}
 	
 	public String getClasificationPayment()
 	 {

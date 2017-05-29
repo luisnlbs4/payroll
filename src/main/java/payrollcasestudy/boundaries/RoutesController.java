@@ -80,6 +80,13 @@ public class RoutesController {
         }, new VelocityTemplateEngine());	
 		
 		get("/json/employees", (req, res) -> EmployeePresenter.Devolver_empleados(), GsonApi.json());		
+		get("/json/employees/:id", (request, response) -> {
+			Employee employee;			
+			employee = employeePresenter.getEmployee(Integer.parseInt(request.params(":id")));
+			return employee;
+		}, GsonApi.json());
+		
+		
 	}
 
 }
