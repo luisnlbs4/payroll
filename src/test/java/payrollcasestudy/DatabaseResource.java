@@ -1,7 +1,8 @@
 package payrollcasestudy;
 
 import org.junit.rules.ExternalResource;
-import payrollcasestudy.boundaries.PayrollDatabase;
+
+import payrollcasestudy.entities.PayrollDatabase;
 
 public class DatabaseResource extends ExternalResource {
     protected PayrollDatabase instance;

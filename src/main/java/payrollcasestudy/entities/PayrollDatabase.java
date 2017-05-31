@@ -1,6 +1,4 @@
-package payrollcasestudy.boundaries;
-
-import payrollcasestudy.entities.Employee;
+package payrollcasestudy.entities;
 
 import java.util.*;
 

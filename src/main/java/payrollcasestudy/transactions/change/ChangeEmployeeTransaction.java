@@ -1,8 +1,8 @@
 package payrollcasestudy.transactions.change;
 
-import payrollcasestudy.boundaries.PayrollDatabase;
 import payrollcasestudy.boundaries.Repository;
 import payrollcasestudy.entities.Employee;
+import payrollcasestudy.entities.PayrollDatabase;
 import payrollcasestudy.transactions.Transaction;
 
 public abstract class ChangeEmployeeTransaction implements Transaction {

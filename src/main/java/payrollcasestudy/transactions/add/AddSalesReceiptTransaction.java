@@ -1,8 +1,8 @@
 package payrollcasestudy.transactions.add;
 
-import payrollcasestudy.boundaries.PayrollDatabase;
 import payrollcasestudy.boundaries.Repository;
 import payrollcasestudy.entities.Employee;
+import payrollcasestudy.entities.PayrollDatabase;
 import payrollcasestudy.entities.SalesReceipt;
 import payrollcasestudy.entities.paymentclassifications.CommissionedPaymentClassification;
 import payrollcasestudy.entities.paymentclassifications.PaymentClassification;
