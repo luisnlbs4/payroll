@@ -1,5 +1,6 @@
 package payrollcasestudy.entities;
 
+import payrollcasestudy.entities.affiliations.Afiliations;
 import payrollcasestudy.entities.affiliations.UnionAffiliation;
 import payrollcasestudy.entities.paymentclassifications.CommissionedPaymentClassification;
 import payrollcasestudy.entities.paymentclassifications.HourlyPaymentClassification;
@@ -21,6 +22,9 @@ public class Employee {
     private String name;
     private String address;
     private UnionAffiliation unionAffiliation;
+	ArrayList<Afiliations> afiliations = new ArrayList<>();
+
+
 
     public Employee (){
     	

@@ -1,32 +1,30 @@
 package payrollcasestudy.entities.affiliations;
 
+import static payrollcasestudy.entities.paymentclassifications.PaymentClassification.isInPayPeriod;
+
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.hamcrest.Matcher;
-
 import payrollcasestudy.entities.PayCheck;
 import payrollcasestudy.entities.ServiceCharge;
-import static payrollcasestudy.entities.paymentclassifications.PaymentClassification.isInPayPeriod;
 
-public class UnionAffiliation implements Afiliations{
-	
+public class SocialSecurity implements Afiliations{
+
 	public  final static  UnionAffiliation NO_AFFILIATION = new UnionAffiliation(0, 0);
 	Map<Calendar, ServiceCharge> serviceCharges = new HashMap<Calendar, ServiceCharge>();
 	private int memberId;
 	private double dues;
 	
-	public UnionAffiliation(int memberId, double dues){
+	public SocialSecurity(int memberId){
 		this.memberId = memberId;
-		this.dues = dues;
+		this.dues = 12;
 	}
 	public ServiceCharge getServiceCharge(Calendar date) {
 		return serviceCharges.get(date);
 
 	}
-	public Double getDues() {
-		
+	public Double getDues() {		
 		return dues;
 	}
 	public int getMemberId() {
@@ -65,5 +63,5 @@ public class UnionAffiliation implements Afiliations{
 		}
 		return fridays;
 	}
-	
+
 }
